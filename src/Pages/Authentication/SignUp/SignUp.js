@@ -13,94 +13,71 @@ const Signup = () => {
   const { createUser, updateUser } = useContext(AuthContext);
 
   const [signUpError, setSignUPError] = useState("");
-  const [createdUserEmail, setCreatedUserEmail] = useState("");
   const [userImg, setUserImg] = useState("");
-  const navigate = useNavigate();
-
   const imageHostKey = process.env.REACT_APP_imgbb_key;
- 
-
+  const navigate = useNavigate();
   const handleSignUp = (data) => {
-    setSignUPError("");
-    createUser(data.email, data.password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        toast("User Created Successfully.");
+    console.log(data);
+    const image = data.image[0];
 
-        const image = data.image[0];
-
-        const formData = new FormData();
-        formData.append("image", image);
-        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
-        fetch(url, {
-          method: "POST",
-          body: formData,
-        })
-          .then((res) => res.json())
-          .then((imgData) => {
-            if (imgData.success) {
-              console.log(imgData.data.url);
-              setUserImg(imgData.data.url);
-
-              const user = {
-                name: data.name,
-                email: data.email,
-                image: imgData.data.url,
-                role: data.role,
-                status: "unverified",
-              };
-              handleUpdateUserProfile(user.name);
-              saveUser(user);
-            }
-          });
-      })
-      .catch((error) => {
-        console.log(error);
-        setSignUPError(error.message);
-      });
-  };
-
-  const handleUpdateUserProfile = (name) => {
-   
-    const profile = {
-      displayName: name,
-    };
-    console.log("profile",profile);
-    updateUser(profile)
-      .then(() => {})
-      .catch((error) => console.error(error));
-  };
-  const saveUser = (user) => {
-    fetch("https://ju-book-express-server.vercel.app/users", {
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
+    fetch(url, {
       method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(user),
+      body: formData,
     })
       .then((res) => res.json())
-      .then((data) => {
-        setCreatedUserEmail(user.email);
-        console.log(data);
-        getUserToken(user.email);
-        navigate("/");
-      });
-  };
+      .then((imgData) => {
+        if (imgData.success) {
+          console.log(imgData.data.url);
+          setUserImg(imgData.data.url);
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+            photo: imgData.data.url,
+            customerType: data.customerType,
+          };
+          setSignUPError("");
+          createUser(data.email, data.password)
+            .then((result) => {
+              const user = result.user;
+              console.log(user);
+              const updateUserInfo = {
+                displayName: data.name,
+                photoURL: imgData.data.url,
+              };
 
-  const getUserToken = (email) => {
-    fetch(`https://ju-book-express-server.vercel.app/jwt?email=${email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.accessToken) {
-          localStorage.setItem("accessToken", data.accessToken);
-          // setToken(data.accessToken);
+              updateUser(updateUserInfo)
+                .then(() => {
+                  fetch("http://localhost:5000/users", {
+                    method: "POST",
+                    headers: {
+                      "content-type": "application/json",
+                    },
+                    body: JSON.stringify(userInfo),
+                  })
+                    .then((res) => res.json())
+                    .then((data) => {
+                      console.log("save", data);
+
+                      navigate("/");
+                    });
+                })
+                .catch((error) => console.log(error));
+              toast("User Created Successfully.");
+            })
+            .catch((error) => {
+              console.log(error);
+              setSignUPError(error.message);
+            });
         }
       });
   };
+
   return (
-    <div className="h-[800px] flex justify-center items-center">
-      <div className="w-100 p-7">
+    <div className="h-[700px] flex justify-center items-center ">
+      <div className="w-100 p-7 border">
         <h2 className="text-xl text-center">Sign Up</h2>
         <form onSubmit={handleSubmit(handleSignUp)}>
           <div className="form-control w-full max-w-xs">
@@ -161,12 +138,13 @@ const Signup = () => {
             )}
 
             <select
-              {...register("role")}
+              {...register("customerType")}
               className="select select-bordered w-full max-w-xs mt-3"
-              defaultValue={"buyer"}
+              defaultValue={"student"}
             >
-              <option value="buyer">Buyer</option>
-              <option value="seller">Seller</option>
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+              <option value="stuff/others">Stuff/Others</option>
             </select>
           </div>
           <div className="form-control w-full max-w-xs">
@@ -179,7 +157,7 @@ const Signup = () => {
               {...register("image", {
                 required: "Photo is Required",
               })}
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full max-w-xs p-2"
             />
             {errors.img && <p className="text-red-500">{errors.img.message}</p>}
           </div>
@@ -190,7 +168,7 @@ const Signup = () => {
           />
           {signUpError && <p className="text-red-600">{signUpError}</p>}
         </form>
-        <p>
+        <p className="pt-3">
           Already have an account{" "}
           <Link className="text-secondary" to="/login">
             Please Login

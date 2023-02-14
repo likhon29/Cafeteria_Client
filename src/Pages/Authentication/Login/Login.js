@@ -12,11 +12,13 @@ const Login = () => {
   } = useForm();
   const { signIn } = useContext(AuthContext);
   const [loginError, setLoginError] = useState("");
-  const [loginUserEmail, setLoginUserEmail] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
 
+  
+    
+  
   const handleLogin = (data) => {
     console.log(data);
     setLoginError("");
@@ -24,8 +26,6 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        setLoginUserEmail(data.email);
-        getUserToken(data.email);
         navigate(from, { replace: true });
       })
       .catch((error) => {
@@ -34,16 +34,6 @@ const Login = () => {
       });
   };
 
-  const getUserToken = (email) => {
-    fetch(`https://ju-book-express-server.vercel.app/jwt?email=${email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.accessToken) {
-          localStorage.setItem("accessToken", data.accessToken);
-          // setToken(data.accessToken);
-        }
-      });
-  };
   return (
     <div className="h-[600px] flex justify-center items-center">
       <div className="w-100 p-7">

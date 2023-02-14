@@ -8,6 +8,8 @@ import Menu from './../../Pages/FoodMenu/Menu/Menu';
 import About from './../../Pages/Home/About/About';
 import Gallery from './../../Pages/Home/Gallery/Gallery';
 import NotFound from "../../Pages/Others/NotFound/NotFound";
+import Profile from './../../Pages/Profile/Profile';
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +31,7 @@ const router = createBrowserRouter([
         },
         {
             path: '/reservation',
-            element: <Reservation></Reservation>
+            element: <PrivateRoute><Reservation></Reservation></PrivateRoute>
         },
         {
             path: '/menu',
@@ -46,6 +48,10 @@ const router = createBrowserRouter([
         {
             path: '/gallery',
             element: <Gallery></Gallery>
+        },
+        {
+            path: '/profile',
+            element: <PrivateRoute><Profile></Profile></PrivateRoute>
         },
         ]
   },

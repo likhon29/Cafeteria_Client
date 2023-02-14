@@ -27,34 +27,7 @@ const Navbar = () => {
       <li>
         <Link to="/reservation">Reservation</Link>
       </li>
-      {user?.uid ? (
-        <>
-          <li>
-            <Link to="/profile">
-              {user ? (
-               
-                  <div className="flex items-center justify-center">
-                    <img
-                    src={user.photoURL}
-                    className="rounded-full border-solid  border-primary border-2 w-3/5"
-                    alt=""
-                  />
-                  </div>
-                
-              ) : (
-                <></>
-              )}
-            </Link>
-          </li>
-          <li>
-            <button onClick={handleLogOut}>Logout</button>
-          </li>
-        </>
-      ) : (
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-      )}
+      
     </React.Fragment>
   );
 
