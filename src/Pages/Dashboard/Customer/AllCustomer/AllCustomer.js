@@ -6,10 +6,10 @@ import { AuthContext } from "./../../../../Contexts/AuthProvider/AuthProvider";
 const AllCustomer = () => {
   const { user } = useContext(AuthContext);
 
-  const url = "http://localhost:5000/users/allCustomer?role=customer";
+  const url = "http://localhost:5000/allCustomer";
 
-  const { data: allBuyers = [], refetch } = useQuery({
-    queryKey: ["allBuyers", user?.email],
+  const { data: allCustomer = [], refetch } = useQuery({
+    queryKey: ["allCustomer", user?.email],
     queryFn: async () => {
       const res = await fetch(url, {
         headers: {
@@ -20,8 +20,8 @@ const AllCustomer = () => {
       return data;
     },
   });
-  console.log(allBuyers);
-  const [buyers, setBuyers] = useState(allBuyers);
+  console.log(allCustomer);
+  const [customers, setCustomers] = useState(allCustomer);
   const handleMakeAdmin = (id) => {
     fetch(`https://ju-book-express-server.vercel.app/users/admin/${id}`, {
       method: "PUT",
@@ -52,8 +52,8 @@ const AllCustomer = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
-            const remaining = buyers.filter((seller) => seller._id !== id);
-            setBuyers(remaining);
+            const remaining = customers.filter((seller) => seller._id !== id);
+            setCustomers(remaining);
             alert("User deleted successfully");
           }
         });
@@ -77,16 +77,16 @@ const AllCustomer = () => {
             <tr>
               <th></th>
               <th>Photo</th>
-              <th>Buyer Name</th>
+              <th>Customer Name</th>
               <th>Email</th>
-              <th>Status</th>
+              <th>Type</th>
               {/* <th>Advertisement</th> */}
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {allBuyers &&
-              allBuyers?.map((buyers, i) => (
+            {allCustomer &&
+              allCustomer?.map((buyers, i) => (
                 <tr key={buyers._id}>
                   <th>{i + 1}</th>
                   <td>
@@ -102,14 +102,7 @@ const AllCustomer = () => {
                   <td>{buyers.name}</td>
                   <td>{buyers.email}</td>
                   <td>
-                    {buyers?.role !== "admin" && (
-                      <button
-                        onClick={() => handleMakeAdmin(buyers._id)}
-                        className="btn btn-xs btn-primary"
-                      >
-                        Make Admin
-                      </button>
-                    )}
+                    {buyers.customerType}
                   </td>
 
                   {/* <td> */}

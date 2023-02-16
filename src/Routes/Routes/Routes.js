@@ -16,6 +16,8 @@ import DashBoardLayout from "./../../Layout/DashBoardLayout/DashBoardLayout";
 import AdminPanel from './../../Pages/Dashboard/Admin/AdminPanel/AdminPanel';
 import AddAdmin from "../../Pages/Dashboard/Admin/AddAdmin/AddAdmin";
 import AllCustomer from './../../Pages/Dashboard/Customer/AllCustomer/AllCustomer';
+import ManageItem from "../../Pages/Dashboard/Admin/ManageItem/ManageItem";
+import MyOrder from "../../Pages/Dashboard/Customer/MyOrder/MyOrder";
 
 const router = createBrowserRouter([
   {
@@ -83,7 +85,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/myOrders",
-        element: <h1>orders</h1>,
+        element: <MyOrder></MyOrder>,
       },
       {
         path: "/dashboard/myWishLists",
@@ -110,7 +112,7 @@ const router = createBrowserRouter([
         path: "/dashboard/reportedItem",
         element: (
           <AdminRoute>
-            <h1>manage items</h1>
+            <ManageItem></ManageItem>
           </AdminRoute>
         ),
       },

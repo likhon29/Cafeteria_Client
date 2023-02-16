@@ -3,13 +3,13 @@ import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "./../../../../Contexts/AuthProvider/AuthProvider";
-const AdminPanel = () => {
+const ManageItem = () => {
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/users`;
+  const url = `http://localhost:5000/food`;
 
-  const { data: allAdmin = [], refetch } = useQuery({
-    queryKey: ["allAdmin", user?.email],
+  const { data: food = [], refetch } = useQuery({
+    queryKey: ["food", user?.email],
     queryFn: async () => {
       const res = await fetch(url, {
         headers: {
@@ -20,8 +20,8 @@ const AdminPanel = () => {
       return data;
     },
   });
-  console.log(allAdmin);
-  const [buyers, setBuyers] = useState(allAdmin);
+  console.log(food);
+  const [items, setItems] = useState(food);
   const handleMakeAdmin = (id) => {
     fetch(`https://ju-book-express-server.vercel.app/users/admin/${id}`, {
       method: "PUT",
@@ -52,8 +52,8 @@ const AdminPanel = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
-            const remaining = buyers.filter((seller) => seller._id !== id);
-            setBuyers(remaining);
+            const remaining = items.filter((seller) => seller._id !== id);
+            items(remaining);
             alert("User deleted successfully");
           }
         });
@@ -62,7 +62,7 @@ const AdminPanel = () => {
   return (
     <div className="mx-20">
       <div className="flex items-center justify-between">
-        <h3 className="text-3xl mb-5">Admin Panel</h3>
+        <h3 className="text-3xl mb-5">Food Items</h3>
         <Link to="addNewUser">
           <img
             src="https://cdn.pixabay.com/photo/2014/04/02/10/41/button-304224_1280.png"
@@ -85,31 +85,24 @@ const AdminPanel = () => {
             </tr>
           </thead>
           <tbody>
-            {allAdmin &&
-              allAdmin?.map((buyers, i) => (
-                <tr key={buyers._id}>
+            {food &&
+              food?.map((item, i) => (
+                <tr key={item._id}>
                   <th>{i + 1}</th>
                   <td>
                     {" "}
                     <img
-                      src={user.photoURL}
+                      src={item.poster}
                       alt=""
                       width="50px"
                       height=""
                       className=""
                     />{" "}
                   </td>
-                  <td>{buyers.name}</td>
-                  <td>{buyers.email}</td>
+                  <td>{item.title}</td>
+                  <td>{item.price}</td>
                   <td>
-                    {buyers?.role !== "admin" && (
-                      <button
-                        onClick={() => handleMakeAdmin(buyers._id)}
-                        className="btn btn-xs btn-primary"
-                      >
-                        Make Admin
-                      </button>
-                    )}
+                    {item.quantity}
                   </td>
 
                   {/* <td> */}
@@ -129,7 +122,7 @@ const AdminPanel = () => {
                   {/* </td> */}
                   <td>
                     <button
-                      onClick={() => handleDelete(buyers._id)}
+                      onClick={() => handleDelete(items._id)}
                       className="btn btn-warning btn-sm"
                     >
                       Delete
@@ -144,4 +137,4 @@ const AdminPanel = () => {
   );
 };
 
-export default AdminPanel;
+export default ManageItem;

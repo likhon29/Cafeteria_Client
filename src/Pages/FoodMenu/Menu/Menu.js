@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Item from "../Item/Item";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "./../../Shared/Loading/Loading";
+import BuyModal from './../BuyModal/BuyModal';
 
 const Menu = () => {
+  const [selectedItem, setSelectedItem] = useState(null);
   const {
     data: foodItems = [],
     refetch,
@@ -21,17 +23,21 @@ const Menu = () => {
   }
   return (
     <div>
-      <h1>Manu</h1>
+      {/* <h1>Menu</h1>
       <img
         src="https://demo.themefisher.com/agico/images/background/banner.png"
         alt=""
-      />
+      /> */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
         {foodItems.map((item) => (
-          <Item key={item.id} item={item}></Item>
+          <Item key={item._id} item={item} setSelectedItem={setSelectedItem}></Item>
         ))}
       </div>
+
+      {
+        selectedItem && <BuyModal selectedItem={selectedItem} setSelectedItem={setSelectedItem}></BuyModal>
+      }
     </div>
   );
 };
