@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
+import React from "react";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { AuthContext } from "./../../../../Contexts/AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
-import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
-const Signup = () => {
+
+const AddAdmin = () => {
   const {
     register,
     handleSubmit,
@@ -35,9 +36,10 @@ const Signup = () => {
           const userInfo = {
             name: data.name,
             email: data.email,
+            password: data.password,
+            phone: data.phone,
             photo: imgData.data.url,
-            customerType: data.customerType,
-            role: "customer",
+            role: data.role,
           };
           setSignUPError("");
           createUser(data.email, data.password)
@@ -62,7 +64,7 @@ const Signup = () => {
                     .then((data) => {
                       console.log("save", data);
 
-                      navigate("/");
+                      navigate("/dashboard/adminPanel");
                     });
                 })
                 .catch((error) => console.log(error));
@@ -75,50 +77,53 @@ const Signup = () => {
         }
       });
   };
-
   return (
-    <div className="h-[700px] flex justify-center items-center ">
-      <div className="w-100 p-7 border">
-        <h2 className="text-xl text-center">Sign Up</h2>
+    <div className=" w-3/4 mx-auto m-5 bg-slate-300">
+      <div className="mx-auto p-7 border">
+        <h2 className="text-xl text-center">Create an Admin Account</h2>
+
         <form onSubmit={handleSubmit(handleSignUp)}>
-          <div className="form-control w-full max-w-xs">
+          <div className="form-control ">
             <label className="label">
               {" "}
               <span className="label-text">Name</span>
             </label>
             <input
               type="text"
+              placeholder="Enter Full Name"
               {...register("name", {
                 required: "Name is Required",
               })}
-              className="input input-bordered w-full max-w-xs"
+              className="input-bordered input  w-full p-2"
             />
             {errors.name && (
               <p className="text-red-500">{errors.name.message}</p>
             )}
           </div>
-          <div className="form-control w-full max-w-xs">
+          <div className="form-control ">
             <label className="label">
               {" "}
               <span className="label-text">Email</span>
             </label>
             <input
               type="email"
+              placeholder="Email address"
               {...register("email", {
                 required: "Email is Required",
               })}
-              className="input input-bordered w-full max-w-xs"
+              className="input-bordered input  w-full p-2"
             />
             {errors.email && (
               <p className="text-red-500">{errors.email.message}</p>
             )}
           </div>
-          <div className="form-control w-full max-w-xs my-5">
+          <div className="form-control">
             <label className="label">
               {" "}
               <span className="label-text">Password</span>
             </label>
             <input
+              placeholder="Enter a strong password"
               type="password"
               {...register("password", {
                 required: "Password is required",
@@ -132,55 +137,76 @@ const Signup = () => {
                     "Password must have uppercase, number and special characters",
                 },
               })}
-              className="input input-bordered w-full max-w-xs"
+              className="input-bordered input  w-full p-2"
             />
             {errors.password && (
               <p className="text-red-500">{errors.password.message}</p>
             )}
+          </div>
+          <div className="flex justify-between items-center">
+            <div className="form-control">
+              <label className="label">
+                {" "}
+                <span className="label-text">Photo</span>
+              </label>
+              <input
+                className="input-bordered input  w-full p-2"
+                type="file"
+                {...register("image", {
+                  required: "Photo is Required",
+                })}
+              />
+              {errors.img && (
+                <p className="text-red-500">{errors.img.message}</p>
+              )}
+            </div>
+            <div className="form-control">
+              <label className="label">
+                {" "}
+                <span className="label-text">Phone Number</span>
+              </label>
+              <input
+                placeholder="Phone Number"
+                type="text"
+                {...register("phone", {
+                  required: "Phone number is required",
+                  
+                 
+                })}
+                className="input-bordered input  w-full p-2"
+              />
+              {errors.password && (
+                <p className="text-red-500">{errors.password.message}</p>
+              )}
+            </div>
+            <div>
+              <label className="label">
+                {" "}
+                <span className="label-text">Select a role</span>
+              </label>
+              <select
+                {...register("role")}
+                className="input-bordered input  w-full p-2"
+                defaultValue={"student"}
+              >
+                <option value="admin">Admin</option>
+                <option value="manager">Manager</option>
+                <option value="cashier">Cashier</option>
+                <option value="deliveryMan">Delivery Man</option>
+              </select>
+            </div>
+          </div>
 
-            <select
-              {...register("customerType")}
-              className="select select-bordered w-full max-w-xs mt-3"
-              defaultValue={"student"}
-            >
-              <option value="student">Student</option>
-              <option value="teacher">Teacher</option>
-              <option value="stuff/others">Stuff/Others</option>
-            </select>
-          </div>
-          <div className="form-control w-full max-w-xs">
-            <label className="label">
-              {" "}
-              <span className="label-text">Photo</span>
-            </label>
-            <input
-              type="file"
-              {...register("image", {
-                required: "Photo is Required",
-              })}
-              className="input input-bordered w-full max-w-xs p-2"
-            />
-            {errors.img && <p className="text-red-500">{errors.img.message}</p>}
-          </div>
           <input
             className="btn btn-accent w-full mt-4"
-            value="Sign Up"
+            value="Create Account"
             type="submit"
           />
           {signUpError && <p className="text-red-600">{signUpError}</p>}
         </form>
-        <p className="pt-3">
-          Already have an account{" "}
-          <Link className="text-secondary" to="/login">
-            Please Login
-          </Link>
-        </p>
-        <div className="divider">OR</div>
-        <SocialLogin></SocialLogin>
-        {/* <button className="btn btn-outline w-full">CONTINUE WITH GOOGLE</button> */}
       </div>
     </div>
   );
 };
 
-export default Signup;
+export default AddAdmin;

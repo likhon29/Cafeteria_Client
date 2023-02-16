@@ -1,0 +1,117 @@
+[
+    {
+      "poster": "https://i.ibb.co/wsGmMt6/polao.jpg",
+      "title": "Polao",
+      "subtitle": "Special Item",
+      "quantity": 200,
+      "price": "20",
+      "type": "LunchItem"
+    },
+    {
+      "poster" : "https://i.ibb.co/khv4R4q/plainrice.jpg",
+      "title": "Plain Rice",
+      "subtitle": "Regular Item",
+      "quantity": 200,
+      "price": "10",
+      "type": "LunchItem"
+    },
+    {
+      "poster": "https://i.ibb.co/v3FTM0x/jhalfry.jpg",
+      "title": "Jhal-Fry",
+      "subtitle": "Regular Item",
+      "quantity": 200,
+      "price": "30",
+      "type": "LunchItem"
+    },
+    {
+      "poster": "https://i.ibb.co/RC3942g/chicken-roast.jpg",
+      "title": "Chicken Roast",
+      "subtitle": "Special Item",
+      "quantity": 200,
+      "price": "50",
+      "type": "LunchItem"
+    },
+    {
+      "poster": "https://i.ibb.co/HH9c4s2/vorta.webp",
+      "title": "Alu Vorta",
+      "subtitle": "Regular Item",
+      "quantity": 200,
+      "price": "5",
+      "type": "LunchItem"
+    },
+    {
+      "poster": "https://i.ibb.co/kScsnMk/dim.jpg",
+      "title": "Dim Curry",
+      "subtitle": "Regular Item",
+      "quantity": 200,
+      "price": "15",
+      "type": "LunchItem"
+    },
+    {
+      "poster": "https://i.ibb.co/Q87hdBH/khicuri.jpg",
+      "title": "Dim Khichuri",
+      "subtitle": "Special Item",
+      "quantity": 200,
+      "price": "35",
+      "type": "LunchItem"
+    },
+    {
+      "poster": "https://i.ibb.co/Kx4tSdR/maxresdefault.jpg",
+      "title": "Sobji Vaji",
+      "subtitle": "Regular Item",
+      "quantity": 200,
+      "price": "10",
+      "type": "LunchItem"
+    },
+  
+    {
+      "poster": "https://i.ibb.co/Vwx8rTM/singara.jpg",
+      "title": "Singara",
+      "subtitle": "Regular Item",
+      "price": "5",
+      "quantity": 200,
+      "type": "SnackItem"
+    },
+    {
+      "poster": "https://i.ibb.co/9TtC9p5/water.jpg",
+      "title": "Drinking Water",
+      "subtitle": "Regular Item",
+      "price": "15",
+      "quantity": 200,
+      "type": "Drinks"
+    },
+    {
+      "poster": "https://i.ibb.co/qFQpwkR/poranbazar-Coca-Cola-600ml.png",
+      "title": "Coca-Cola",
+      "subtitle": "Regular Item",
+      "price": "25",
+      "quantity": 200,
+      "type": "Drinks"
+    },
+    {
+      "poster":"https://splagro.com/wp-content/uploads/2021/11/16022021.1613414036.SNCPSG10.obj_.0.1.jpg.oe_.jpg.pf_.jpg.1350nowm.jpg.1350x-600x600.jpg",
+      "title": "7-UP",
+      "subtitle": "Regular Item",
+      "price": "25",
+      "quantity": 200,
+      "type": "Drinks"
+    },
+    {
+      "poster":"https://hungrito.com/wp-content/uploads/2021/08/LAL-CHA-e1629386451215.jpeg",
+      "title": "Rong Cha",
+      "subtitle": "Regular Item",
+      "price": "5",
+      "quantity": 200,
+      "type": "SnackItem"
+    },
+    {
+      "poster":"https://thumbs.dreamstime.com/b/vegetable-roll-fresh-mint-leaves-over-white-background-31170417.jpg",
+      "title": "Caclet",
+      "subtitle": "Regular Item",
+      "price": "12",
+      "quantity": 200,
+      "type": "SnackItem"
+    }
+  ]
+  
+

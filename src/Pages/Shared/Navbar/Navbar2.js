@@ -75,7 +75,7 @@ const Navbar2 = () => {
                 width="45px"
               />
             </Link>
-            <Link to="/profile">
+            <Link to="/dashboard">
               {user.photoURL ? (
                 <div className="flex items-center justify-center">
                   <img
