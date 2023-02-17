@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "./../../../Contexts/AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
 import logo from "../../../Assets/img/JU_logo.png";
+import useCustomer from './../../../Hooks/useCustomer';
 const Navbar2 = () => {
   const { user, logOut } = useContext(AuthContext);
-
+  const [isCustomer] = useCustomer(user?.email);
   const handleLogOut = () => {
     logOut().then().catch();
   };
 
+  
   const navItems = (
     <React.Fragment>
       <li>
@@ -67,14 +69,16 @@ const Navbar2 = () => {
       <div className="navbar-end">
         {user?.uid ? (
           <>
-            <Link to="/dashboard">
-              <img
-                src="https://media.istockphoto.com/id/898295684/vector/shopping-cart-icon-silhouette-2.jpg?s=170667a&w=0&k=20&c=wpjwuU3dJ_iI6rq4q0uHqYzXmEWU4nZATgpEBI2m-cY="
-                className="rounded-full  m-3  border-2"
-                alt=""
-                width="45px"
-              />
-            </Link>
+            {isCustomer && (
+              <Link to="/dashboard">
+                <img
+                  src="https://media.istockphoto.com/id/898295684/vector/shopping-cart-icon-silhouette-2.jpg?s=170667a&w=0&k=20&c=wpjwuU3dJ_iI6rq4q0uHqYzXmEWU4nZATgpEBI2m-cY="
+                  className="rounded-full  m-3  border-2"
+                  alt=""
+                  width="45px"
+                />
+              </Link>
+            )}
             <Link to="/dashboard">
               {user.photoURL ? (
                 <div className="flex items-center justify-center">
@@ -84,14 +88,14 @@ const Navbar2 = () => {
                     alt=""
                     width="55px"
                   />
-                  
+
                   <div className="pr-4">
-                   <img
-                    src="https://static.thenounproject.com/png/551749-200.png"
-                    className=""
-                    alt=""
-                    width="20px"
-                  />
+                    <img
+                      src="https://static.thenounproject.com/png/551749-200.png"
+                      className=""
+                      alt=""
+                      width="20px"
+                    />
                   </div>
                 </div>
               ) : (
