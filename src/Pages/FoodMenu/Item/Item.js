@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../../Assets/img/Food/khicuri.jpg";
-const Item = ({ item ,setSelectedItem }) => {
+const Item = ({ item, setSelectedItem, handleAddToCart }) => {
   const { title, subtitle, poster, quantity, price } = item;
   return (
     <div>
@@ -21,14 +21,19 @@ const Item = ({ item ,setSelectedItem }) => {
           <p>If a dog chews shoes whose shoes does he choose?</p>
           <div className="card-actions items-center justify-between">
             <div className="badge badge-outline">{quantity} piece</div>
-            <button className="btn btn-sm ">Add To Cart</button>
+            <button
+              onClick={() => handleAddToCart(item)}
+              className="btn btn-sm "
+            >
+              Add To Cart
+            </button>
             <label
-                htmlFor="my-modal"
-                className="btn btn-sm "
-                onClick={() => setSelectedItem(item)}
-              >
-                Order
-              </label>
+              htmlFor="my-modal"
+              className="btn btn-sm "
+              onClick={() => setSelectedItem(item)}
+            >
+              Order
+            </label>
           </div>
         </div>
       </div>

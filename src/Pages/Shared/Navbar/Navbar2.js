@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "./../../../Contexts/AuthProvider/AuthProvider";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../../../Assets/img/JU_logo.png";
-import useCustomer from './../../../Hooks/useCustomer';
+import useCustomer from "./../../../Hooks/useCustomer";
+import "./Navbar2.css";
 const Navbar2 = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isCustomer] = useCustomer(user?.email);
@@ -11,28 +12,27 @@ const Navbar2 = () => {
     logOut().then().catch();
   };
 
-  
   const navItems = (
     <React.Fragment>
       <li>
-        <Link to="/">Home</Link>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <Link to="/menu">Menu</Link>
+        <NavLink to="/menu">Menu</NavLink>
       </li>
       <li>
-        <Link to="/gallery">Gallery</Link>
+        <NavLink to="/gallery">Gallery</NavLink>
       </li>
       <li>
-        <Link to="/about">About US</Link>
+        <NavLink to="/about">About US</NavLink>
       </li>
       <li>
-        <Link to="/reservation">Reservation</Link>
+        <NavLink to="/reservation">Reservation</NavLink>
       </li>
     </React.Fragment>
   );
   return (
-    <div className="navbar 	md:px-10 lg:px-15  flex justify-between items-center">
+    <div className="sticky bg-cyan-50 top-0 z-50  navbar md:px-10 lg:px-15  flex justify-between items-center">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -58,10 +58,10 @@ const Navbar2 = () => {
             {navItems}
           </ul>
         </div>
-        <Link to="/" className="flex   items-center lg:mx-20 md:mx-10">
+        <NavLink to="/" className="flex   items-center lg:mx-20 md:mx-10">
           <img src={logo} alt="" className="w-1/5 mx-5" />
           <span className="text-[blue] text-2xl  ">Cafeteria</span>
-        </Link>
+        </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{navItems}</ul>
@@ -70,16 +70,26 @@ const Navbar2 = () => {
         {user?.uid ? (
           <>
             {isCustomer && (
-              <Link to="/dashboard">
-                <img
-                  src="https://media.istockphoto.com/id/898295684/vector/shopping-cart-icon-silhouette-2.jpg?s=170667a&w=0&k=20&c=wpjwuU3dJ_iI6rq4q0uHqYzXmEWU4nZATgpEBI2m-cY="
-                  className="rounded-full  m-3  border-2"
-                  alt=""
-                  width="45px"
-                />
-              </Link>
+              <NavLink to="/dashboard" className="m-3">
+                <button
+                  to="/"
+                  type="button"
+                  className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white   "
+                >
+                  <img
+                    src="https://media.istockphoto.com/id/898295684/vector/shopping-cart-icon-silhouette-2.jpg?s=170667a&w=0&k=20&c=wpjwuU3dJ_iI6rq4q0uHqYzXmEWU4nZATgpEBI2m-cY="
+                    className="rounded-full        "
+                    alt=""
+                    width="35px"
+                  />
+                  <span className="sr-only">Notifications</span>
+                  <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-1 -right-1 dark:border-gray-900">
+                    20
+                  </div>
+                </button>
+              </NavLink>
             )}
-            <Link to="/dashboard">
+            <NavLink to="/dashboard">
               {user.photoURL ? (
                 <div className="flex items-center justify-center">
                   <img
@@ -108,12 +118,12 @@ const Navbar2 = () => {
                   />
                 </div>
               )}
-            </Link>
+            </NavLink>
 
             <button onClick={handleLogOut}>Logout</button>
           </>
         ) : (
-          <Link to="/login">Login</Link>
+          <NavLink to="/login">Login</NavLink>
         )}
       </div>
     </div>

@@ -1,11 +1,18 @@
-import React from 'react';
+import React from "react";
+import { useState } from "react";
+import ReservationBanner from "./../ReservationBanner/ReservationBanner";
 
 const Reservation = () => {
-    return (
-        <div>
-            <h1>Reservation</h1>
-        </div>
-    );
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  console.log(selectedDate);
+  return (
+    <div>
+      <ReservationBanner
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+      ></ReservationBanner>
+    </div>
+  );
 };
 
 export default Reservation;

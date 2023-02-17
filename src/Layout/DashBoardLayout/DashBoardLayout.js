@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import useAdmin from "../../Hooks/useAdmin";
 // import useSeller from "../../Hooks/useSeller";
@@ -18,10 +18,17 @@ const DashBoardLayout = () => {
   const [isManager] = useManager(user?.email);
   const [isCashier] = useCashier(user?.email);
   const [isDeliveryMan] = useDeliveryMan(user?.email);
+
+  let activeStyle = {
+    textDecoration: "underline",
+  };
+
+  let activeClassName = "underline";
+
   return (
     <div>
       <Navbar2></Navbar2>
-      <div className="drawer drawer-mobile drawer-end">
+      <div className=" drawer drawer-mobile drawer-end">
         <input
           id="dashboard-drawer"
           type="checkbox"
@@ -36,98 +43,87 @@ const DashBoardLayout = () => {
             {isAdmin && (
               <>
                 <li>
-                  <Link to="/dashboard">Profile</Link>
+                  <NavLink to="/dashboard/profile">Profile</NavLink>
                 </li>
 
                 <li>
-                  <Link to="/dashboard/allCustomer">All Customer</Link>
+                  <NavLink to="/dashboard/allCustomer">All Customer</NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/adminPanel">Admin Panel</Link>
+                  <NavLink to="/dashboard/adminPanel">Admin Panel</NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/reportedItem">Manage Item</Link>
+                  <NavLink to="/dashboard/reportedItem">Manage Item</NavLink>
                 </li>
               </>
             )}
             {isCustomer && (
               <>
                 <li>
-                  <Link to="/dashboard">Profile</Link>
+                  <NavLink to="/dashboard/profile">Profile</NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/myOrders">My Orders</Link>
+                  <NavLink to="/dashboard/myOrders">My Orders</NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/myWishLists">My WishLists</Link>
+                  <NavLink
+                    to="/dashboard/myWishLists"
+                    activeStyle={{
+                      fontWeight: "bold",
+                      color: "red",
+                    }}
+                  >
+                    My WishLists
+                  </NavLink>
                 </li>
               </>
             )}
             {isCashier && (
               <>
                 <li>
-                  <Link to="/dashboard">Profile</Link>
+                  <NavLink to="/dashboard/profile">Profile</NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/myOrders">Manage Order</Link>
+                  <NavLink to="/dashboard/myOrders">Manage Order</NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/myWishLists">Payments</Link>
+                  <NavLink to="/dashboard/myWishLists">Payments</NavLink>
                 </li>
               </>
             )}
             {isManager && (
               <>
                 <li>
-                  <Link to="/dashboard">Profile</Link>
+                  <NavLink to="/dashboard/profile">Profile</NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/myOrders">Manage Orders</Link>
+                  <NavLink to="/dashboard/myOrders">Manage Orders</NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/myWishLists">Manage Customers</Link>
+                  <NavLink to="/dashboard/myWishLists">
+                    Manage Customers
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/myWishLists">Manage FoodItems</Link>
+                  <NavLink to="/dashboard/myWishLists">
+                    Manage FoodItems
+                  </NavLink>
                 </li>
               </>
             )}
             {isDeliveryMan && (
               <>
                 <li>
-                  <Link to="/dashboard">Profile</Link>
+                  <NavLink to="/dashboard/profile">Profile</NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/myOrders">Delivery Items</Link>
+                  <NavLink to="/dashboard/myOrders">Delivery Items</NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/myWishLists">Payments</Link>
+                  <NavLink to="/dashboard/myWishLists">Payments</NavLink>
                 </li>
               </>
             )}
-
-            {/* {isSeller ? (
-                  <>
-                    <li>
-                      <Link to="/dashboard/addProduct">Add a Product</Link>
-                    </li>
-                    <li>
-                      <Link to="/dashboard/myProducts">My Products</Link>
-                    </li>
-                    <li>
-                      <Link to="/dashboard/myBuyers">My Buyers</Link>
-                    </li>
-                  </>
-                ) : (
-                  <>
-                    <li>
-                      <Link to="/dashboard/myOrders">My Orders</Link>
-                    </li>
-                    <li>
-                      <Link to="/dashboard/myWishLists">My WishLists</Link>
-                    </li>
-                  </>
-                )} */}
           </ul>
         </div>
       </div>
