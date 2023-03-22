@@ -19,9 +19,10 @@ import AllCustomer from "./../../Pages/Dashboard/Customer/AllCustomer/AllCustome
 import ManageItem from "../../Pages/Dashboard/Admin/ManageItem/ManageItem";
 import MyOrder from "../../Pages/Dashboard/Customer/MyOrder/MyOrder";
 import Checkout from "../../Pages/CheckOut/Checkout/Checkout";
-import { productsAndCartLoader } from './../../Loaders/ProductsAndCartLoader';
-import CardDetails from './../../Pages/FoodMenu/CardDetails/CardDetails';
+import { productsAndCartLoader } from "./../../Loaders/ProductsAndCartLoader";
+import CardDetails from "./../../Pages/FoodMenu/CardDetails/CardDetails";
 import MyReservation from "../../Pages/Dashboard/Customer/MyReservation/MyReservation";
+import PaymentSuccess from "../../Pages/Dashboard/Customer/MyOrder/PaymentSuccess";
 
 const router = createBrowserRouter([
   {
@@ -101,6 +102,11 @@ const router = createBrowserRouter([
         path: "/dashboard/myOrders",
         element: <MyOrder></MyOrder>,
       },
+      {
+        path: "/dashboard/payment/success",
+        element: <PaymentSuccess></PaymentSuccess>,
+      },
+
       {
         path: "/dashboard/myReservation",
         element: <MyReservation></MyReservation>,

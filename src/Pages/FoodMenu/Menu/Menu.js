@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Item from "../Item/Item";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "./../../Shared/Loading/Loading";
@@ -7,9 +7,11 @@ import { addToDb, deleteShoppingCart, getStoredCart } from "../../../Utilities/f
 import Cart from "./../../Dashboard/Customer/Cart/Cart";
 import "./Menu.css";
 import { Link } from 'react-router-dom';
+import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 const Menu = () => {
   const [selectedItem, setSelectedItem] = useState(null);
-  const [cart, setCart] = useState([]);
+  
+  const {cart,setCart} = useContext(AuthContext);
   const clearCart = () =>{
     setCart([]);
     deleteShoppingCart();
@@ -82,7 +84,7 @@ const Menu = () => {
       <div className="cart-container">
         <Cart cart={cart} clearCart={clearCart}>
         <Link to="/cardDetails">
-                        <button className="btn btn-sm">Review Order</button>
+                        <button className="btn m-5">Review Order</button>
                     </Link>
         </Cart>
       </div>

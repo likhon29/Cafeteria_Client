@@ -1,7 +1,8 @@
 import React from "react";
 import logo from "../../../Assets/img/Food/khicuri.jpg";
 const Item = ({ item, setSelectedItem, handleAddToCart }) => {
-  const { title, subtitle, poster, quantity, price } = item;
+  const { title, subtitle, poster, quantities, price } = item;
+  
   return (
     <div>
       <div className="card w-96 text-white bg-[#5f668d] shadow-xl m-5">
@@ -20,7 +21,7 @@ const Item = ({ item, setSelectedItem, handleAddToCart }) => {
           </div>
           <p>If a dog chews shoes whose shoes does he choose?</p>
           <div className="card-actions items-center justify-between">
-            <div className="badge badge-outline">{quantity} piece</div>
+            <div className="badge badge-outline">{quantities} piece</div>
             <button
               onClick={() => handleAddToCart(item)}
               className="btn btn-sm "
