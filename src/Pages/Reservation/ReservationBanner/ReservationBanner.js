@@ -1,24 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import chair from "../../../Assets/img/modern-empty-cafe-restaurant_7081-1149.png";
 import { DayPicker } from "react-day-picker";
+import ReservationForm from "../ReservationForm/ReservationForm";
 
-const ReservationBanner = ({ selectedDate, setSelectedDate }) => {
-    const disabledDays = [
-        new Date(2023, 2, 10),
-        new Date(2022, 2, 12),
-        new Date(2022, 2, 20),
-        { from: new Date(2022, 4, 18), to: new Date(2022, 4, 29) }
-      ];
+const ReservationBanner = () => {
+  
+  const disabledDays = [
+    { from: new Date(2022, 3, 21), to: new Date() },
+  ];
+  const [selectedDate, setSelectedDate] = useState(new Date());
   return (
     <header className="my-6">
       <div className="hero">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <img
+        <div className="hero-content flex-col  lg:flex-row-reverse">
+          {/* <img
             src={chair}
             alt="dentist chair"
             className="max-w-sm rounded-lg shadow-2xl"
-          />
-          <div className="mr-10 border bg-amber-100 sm:w-full">
+          /> */}
+          <ReservationForm selectedDate={selectedDate}></ReservationForm>
+          <div className="mr-10 border  sm:w-full">
             <DayPicker
               mode="single"
               selected={selectedDate}

@@ -81,7 +81,7 @@ const Menu = () => {
       </div>
       <div className="cart-container">
         <Cart cart={cart} clearCart={clearCart}>
-        <Link to="/dashboard/myOrders">
+        <Link to="/cardDetails">
                         <button className="btn btn-sm">Review Order</button>
                     </Link>
         </Cart>

@@ -70,7 +70,7 @@ const Navbar2 = () => {
         {user?.uid ? (
           <>
             {isCustomer && (
-              <NavLink to="/dashboard" className="m-3">
+              <NavLink to="/cardDetails" className="m-3">
                 <button
                   to="/"
                   type="button"

@@ -13,11 +13,15 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import AdminRoute from "./../AdminRoute/AdminRoute";
 import DisplayError from "./../../Pages/Shared/DisplayError/DisplayError";
 import DashBoardLayout from "./../../Layout/DashBoardLayout/DashBoardLayout";
-import AdminPanel from './../../Pages/Dashboard/Admin/AdminPanel/AdminPanel';
+import AdminPanel from "./../../Pages/Dashboard/Admin/AdminPanel/AdminPanel";
 import AddAdmin from "../../Pages/Dashboard/Admin/AddAdmin/AddAdmin";
-import AllCustomer from './../../Pages/Dashboard/Customer/AllCustomer/AllCustomer';
+import AllCustomer from "./../../Pages/Dashboard/Customer/AllCustomer/AllCustomer";
 import ManageItem from "../../Pages/Dashboard/Admin/ManageItem/ManageItem";
 import MyOrder from "../../Pages/Dashboard/Customer/MyOrder/MyOrder";
+import Checkout from "../../Pages/CheckOut/Checkout/Checkout";
+import { productsAndCartLoader } from './../../Loaders/ProductsAndCartLoader';
+import CardDetails from './../../Pages/FoodMenu/CardDetails/CardDetails';
+import MyReservation from "../../Pages/Dashboard/Customer/MyReservation/MyReservation";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +53,11 @@ const router = createBrowserRouter([
         element: <Menu></Menu>,
       },
       {
+        path: "/cardDetails",
+        loader: () => productsAndCartLoader(),
+        element: <CardDetails></CardDetails>,
+      },
+      {
         path: "/review",
         element: <SignUp></SignUp>,
       },
@@ -70,6 +79,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "/dashboard",
     element: (
@@ -92,8 +102,8 @@ const router = createBrowserRouter([
         element: <MyOrder></MyOrder>,
       },
       {
-        path: "/dashboard/myWishLists",
-        element: <h1>wishlists</h1>,
+        path: "/dashboard/myReservation",
+        element: <MyReservation></MyReservation>,
       },
 
       {

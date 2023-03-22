@@ -67,13 +67,13 @@ const DashBoardLayout = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/dashboard/myWishLists"
+                    to="/dashboard/myReservation"
                     activeStyle={{
                       fontWeight: "bold",
                       color: "red",
                     }}
                   >
-                    My WishLists
+                    My Reservation
                   </NavLink>
                 </li>
               </>
