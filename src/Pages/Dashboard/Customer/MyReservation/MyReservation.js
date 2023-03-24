@@ -24,29 +24,28 @@ const MyReservation = () => {
   });
   console.log(orders);
 
-  const handlePay = (id) => {
+  const handleReservation = (id) => {
     console.log(id);
-    const bookingInfo = {
-      id,
-    };
-    fetch("http://localhost:5000/init", {
+    
+    fetch("http://localhost:5000/booking-payment", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(bookingInfo),
+      body: JSON.stringify({id}),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        // if (data.acknowledged) {
-        //   // setIsBooked(true);
-        //   navigate("/dashboard/myReservation");
-        //   toast.success("Booking confirmed");
-        //   // refetch();
-        // } else {
-        //   toast.error(data.message);
-        // }
+        window.location.replace(data.url);
+        if (data.acknowledged) {
+          // setIsBooked(true);
+          // navigate("/dashboard/pa");
+          // toast.success("Booking confirmed");
+          // refetch();
+        } else {
+          // toast.error(data.message);
+        }
       });
   };
   return (
@@ -85,7 +84,7 @@ const MyReservation = () => {
                     {order.price && !order.paid && (
                       <Link to={`/dashboard/payment/${order._id}`}>
                         <button
-                          onClick={() => handlePay(order._id)}
+                          onClick={() => handleReservation(order._id)}
                           className="btn btn-primary btn-sm"
                         >
                           Pay

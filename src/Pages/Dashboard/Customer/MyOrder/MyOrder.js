@@ -30,13 +30,13 @@ const MyOrder = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Product Image</th>
+              <th>transactionID</th>
 
-              <th>Book Name</th>
-              <th>Price</th>
+              <th>Amount</th>
+              <th>Order Date</th>
               {/* <th>Date</th> */}
-              <th>Seller Name</th>
-              <th>Payment</th>
+              <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -45,24 +45,27 @@ const MyOrder = () => {
                 <tr key={order._id}>
                   <th>{i + 1}</th>
                   <td>
-                    <img src={order.image} width="50px" alt="" />
+                    {order.transactionId}
                   </td>
-                  <td>{order.itemName}</td>
+                  
                   <td>{order.price} Tk.</td>
                   {/* <td>{booking.bookingDate.split('T')[0]}</td> */}
-                  <td>{order.seller_name}</td>
+                  <td>{order?.orderDate?.split('T')[0]}</td>
                   <td>
                     {/* <button
                                             className='btn btn-primary btn-sm'
                                         >Pay</button> */}
-                    {order.price && !order.paid && (
+                    {/* {order.price && !order.paid && (
                       <Link to={`/dashboard/payment/${order._id}`}>
                         <button className="btn btn-primary btn-sm">Pay</button>
                       </Link>
-                    )}
+                    )} */}
                     {order.price && order.paid && (
-                      <span className="text-green-500">Paid</span>
+                      <span className="rounded p-2 text-white bg-green-600">Paid</span>
                     )}
+                  </td>
+                  <td>
+                    <button className="btn btn-sm">Show Details</button>
                   </td>
                 </tr>
               ))}

@@ -4,7 +4,7 @@ import "./Cart.css";
 import { toast } from "react-hot-toast";
 
 const Cart1 = (props) => {
-  const { user } = useContext(AuthContext);
+  const { user, setCart } = useContext(AuthContext);
   const { cart, clearCart, children } = props;
   // console.log(cart);
   let total = 0;
@@ -50,12 +50,14 @@ const Cart1 = (props) => {
 
         console.log(data);
         if (data.acknowledged) {
+            // clearCart();
+        //   setCart([]);
           // setIsBooked(true);
           //   navigate("/dashboard/myReservation");
           //   toast.success("Booking confirmed");
           // refetch();
         } else {
-          toast.error(data.message);
+          //   toast.error(data.message);
         }
       });
   };
