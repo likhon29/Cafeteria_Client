@@ -63,7 +63,7 @@ const ManageItem = () => {
     <div className="mx-20">
       <div className="flex items-center justify-between">
         <h3 className="text-3xl mb-5">Food Items</h3>
-        <Link to="addNewUser">
+        <Link to="addNewItem">
           <img
             src="https://cdn.pixabay.com/photo/2014/04/02/10/41/button-304224_1280.png"
             width="30px"
@@ -77,9 +77,9 @@ const ManageItem = () => {
             <tr>
               <th></th>
               <th>Photo</th>
-              <th>Buyer Name</th>
-              <th>Email</th>
-              <th>Status</th>
+              <th>Food Name</th>
+              <th>Price</th>
+              <th>Available Quantity</th>
               {/* <th>Advertisement</th> */}
               <th>Action</th>
             </tr>
@@ -101,9 +101,7 @@ const ManageItem = () => {
                   </td>
                   <td>{item.title}</td>
                   <td>{item.price}</td>
-                  <td>
-                    {item.quantity}
-                  </td>
+                  <td>{item.quantities}</td>
 
                   {/* <td> */}
                   {/* <button className="btn btn-primary btn-sm">Advertised</button> */}
@@ -125,7 +123,7 @@ const ManageItem = () => {
                       onClick={() => handleDelete(items._id)}
                       className="btn btn-warning btn-sm"
                     >
-                      Delete
+                      manage item
                     </button>
                   </td>
                 </tr>

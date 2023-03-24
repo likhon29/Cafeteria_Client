@@ -6,18 +6,14 @@ import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const BuyModal = ({ selectedItem, setSelectedItem }) => {
   console.log("Modal info", selectedItem);
-  const {
-    _id,
-    title,
-    price,
-  } = selectedItem;
+  const { _id, title, price } = selectedItem;
   const { user } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState({});
-//   useEffect(() => {
-//     axios
-//       .get(`https://ju-book-express-server.vercel.app/user/${user.email}`)
-//       .then((data) => setUserInfo(data.data));
-//   }, [user.email]);
+  //   useEffect(() => {
+  //     axios
+  //       .get(`https://ju-book-express-server.vercel.app/user/${user.email}`)
+  //       .then((data) => setUserInfo(data.data));
+  //   }, [user.email]);
   const navigate = useNavigate();
   const handleBooking = (event) => {
     event.preventDefault();
@@ -37,7 +33,7 @@ const BuyModal = ({ selectedItem, setSelectedItem }) => {
       customerPhone: phone,
       deliveryLocation: location,
       orderTime,
-      
+
       price,
     };
     console.log(OrderInfo);

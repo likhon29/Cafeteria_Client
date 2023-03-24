@@ -50,8 +50,8 @@ const Cart1 = (props) => {
 
         console.log(data);
         if (data.acknowledged) {
-            // clearCart();
-        //   setCart([]);
+          // clearCart();
+          //   setCart([]);
           // setIsBooked(true);
           //   navigate("/dashboard/myReservation");
           //   toast.success("Booking confirmed");

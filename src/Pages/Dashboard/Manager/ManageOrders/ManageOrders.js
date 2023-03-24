@@ -3,10 +3,10 @@ import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../../Contexts/AuthProvider/AuthProvider";
 
-const MyOrder = () => {
+const ManageOrders = () => {
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/orders?email=${user?.email}`;
+  const url = `http://localhost:5000/orders`;
 
   const { data: orders = [] } = useQuery({
     queryKey: ["orders", user?.email],
@@ -24,7 +24,7 @@ const MyOrder = () => {
   console.log(orders);
   return (
     <div className="mx-20">
-      <h3 className="text-3xl mb-5">My Orders</h3>
+      <h3 className="text-3xl mb-5">Manage Orders</h3>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
@@ -76,4 +76,4 @@ const MyOrder = () => {
   );
 };
 
-export default MyOrder;
+export default ManageOrders;

@@ -3,19 +3,23 @@ import Item from "../Item/Item";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "./../../Shared/Loading/Loading";
 import BuyModal from "./../BuyModal/BuyModal";
-import { addToDb, deleteShoppingCart, getStoredCart } from "../../../Utilities/fakedb";
+import {
+  addToDb,
+  deleteShoppingCart,
+  getStoredCart,
+} from "../../../Utilities/fakedb";
 import Cart from "./../../Dashboard/Customer/Cart/Cart";
 import "./Menu.css";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 const Menu = () => {
   const [selectedItem, setSelectedItem] = useState(null);
-  
-  const {cart,setCart} = useContext(AuthContext);
-  const clearCart = () =>{
+
+  const { cart, setCart } = useContext(AuthContext);
+  const clearCart = () => {
     setCart([]);
     deleteShoppingCart();
-}
+  };
   const {
     data: foodItems = [],
     refetch,
@@ -51,7 +55,9 @@ const Menu = () => {
       selectedProduct.quantity = 1;
       newCart = [...cart, selectedProduct];
     } else {
-      const rest = cart.filter((product) => product._id !== selectedProduct._id);
+      const rest = cart.filter(
+        (product) => product._id !== selectedProduct._id
+      );
       exists.quantity = exists.quantity + 1;
       newCart = [...rest, exists];
     }
@@ -83,9 +89,9 @@ const Menu = () => {
       </div>
       <div className="cart-container">
         <Cart cart={cart} clearCart={clearCart}>
-        <Link to="/cardDetails">
-                        <button className="btn m-5">Review Order</button>
-                    </Link>
+          <Link to="/cardDetails">
+            <button className="btn m-5">Review Order</button>
+          </Link>
         </Cart>
       </div>
       {selectedItem && (

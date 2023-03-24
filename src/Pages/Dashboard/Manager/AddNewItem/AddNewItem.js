@@ -5,7 +5,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "./../../../../Contexts/AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
 
-const AddAdmin = () => {
+const AddNewItem = () => {
   const {
     register,
     handleSubmit,
@@ -80,7 +80,7 @@ const AddAdmin = () => {
   return (
     <div className=" w-3/4 mx-auto m-5 bg-slate-300">
       <div className="mx-auto p-7 border">
-        <h2 className="text-xl text-center">Create an Admin Account</h2>
+        <h2 className="text-xl text-center">Add a new Food Item</h2>
 
         <form onSubmit={handleSubmit(handleSignUp)}>
           <div className="form-control ">
@@ -90,7 +90,7 @@ const AddAdmin = () => {
             </label>
             <input
               type="text"
-              placeholder="Enter Full Name"
+              placeholder="Enter Food Title"
               {...register("name", {
                 required: "Name is Required",
               })}
@@ -207,4 +207,4 @@ const AddAdmin = () => {
   );
 };
 
-export default AddAdmin;
+export default AddNewItem;

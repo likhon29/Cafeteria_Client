@@ -26,13 +26,13 @@ const MyReservation = () => {
 
   const handleReservation = (id) => {
     console.log(id);
-    
+
     fetch("http://localhost:5000/booking-payment", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({id}),
+      body: JSON.stringify({ id }),
     })
       .then((res) => res.json())
       .then((data) => {

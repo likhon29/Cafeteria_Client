@@ -23,6 +23,8 @@ import { productsAndCartLoader } from "./../../Loaders/ProductsAndCartLoader";
 import CardDetails from "./../../Pages/FoodMenu/CardDetails/CardDetails";
 import MyReservation from "../../Pages/Dashboard/Customer/MyReservation/MyReservation";
 import PaymentSuccess from "../../Pages/Dashboard/Customer/MyOrder/PaymentSuccess";
+import ManageOrders from "../../Pages/Dashboard/Manager/ManageOrders/ManageOrders";
+import AddNewItem from './../../Pages/Dashboard/Manager/AddNewItem/AddNewItem';
 
 const router = createBrowserRouter([
   {
@@ -51,7 +53,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/menu",
-        element: <Menu></Menu>,
+        element: <PrivateRoute>
+        <Menu></Menu>
+      </PrivateRoute>,
       },
       {
         path: "/cardDetails",
@@ -129,7 +133,15 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/reportedItem",
+        path: "/dashboard/allOrders",
+        element: (
+          <AdminRoute>
+            <AllCustomer></AllCustomer>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/manageItem",
         element: (
           <AdminRoute>
             <ManageItem></ManageItem>
@@ -144,6 +156,42 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+      {
+        path:"/dashboard/manageOrders",
+        element: (
+          // <ManagerRoute></ManagerRoute>
+          <ManageOrders></ManageOrders>
+        )
+      },
+      {
+        path:"/dashboard/allCustomers",
+        element: (
+          // <ManagerRoute></ManagerRoute>
+          <AllCustomer></AllCustomer>
+        )
+      },
+      {
+        path: "/dashboard/manager/manageItem",
+        element: (
+          
+            <ManageItem></ManageItem>
+          
+        ),
+        children:[
+          {
+            
+          }
+        ]
+      },
+      {
+        path: "/dashboard/manager/manageItem/addNewItem",
+        element: (
+          
+            <AddNewItem></AddNewItem>
+          
+        ),
+      }
+      
     ],
   },
   {

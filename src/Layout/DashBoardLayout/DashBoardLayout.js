@@ -53,7 +53,7 @@ const DashBoardLayout = () => {
                   <NavLink to="/dashboard/adminPanel">Admin Panel</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/reportedItem">Manage Item</NavLink>
+                  <NavLink to="/dashboard/manageItem">Manage Item</NavLink>
                 </li>
               </>
             )}
@@ -97,15 +97,15 @@ const DashBoardLayout = () => {
                   <NavLink to="/dashboard/profile">Profile</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/myOrders">Manage Orders</NavLink>
+                  <NavLink to="/dashboard/manageOrders">Manage Orders</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/myWishLists">
+                  <NavLink to="/dashboard/allCustomers">
                     Manage Customers
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/myWishLists">
+                  <NavLink to="/dashboard/manager/manageItem">
                     Manage FoodItems
                   </NavLink>
                 </li>

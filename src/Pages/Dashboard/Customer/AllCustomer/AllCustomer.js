@@ -101,9 +101,7 @@ const AllCustomer = () => {
                   </td>
                   <td>{buyers.name}</td>
                   <td>{buyers.email}</td>
-                  <td>
-                    {buyers.customerType}
-                  </td>
+                  <td>{buyers.customerType}</td>
 
                   {/* <td> */}
                   {/* <button className="btn btn-primary btn-sm">Advertised</button> */}
