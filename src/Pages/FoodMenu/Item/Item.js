@@ -5,7 +5,7 @@ const Item = ({ item, setSelectedItem, handleAddToCart }) => {
   
   return (
     <div>
-      <div className="card w-96 text-white bg-[#5f668d] shadow-xl m-5">
+      <div className="card w-96 text-white bg-[green] shadow-xl m-5">
         <figure>
           <div className="w-100 ">
             <img src={poster} alt="Shoes" className=" h-48 w-96" />

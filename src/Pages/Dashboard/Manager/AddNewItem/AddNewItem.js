@@ -11,15 +11,70 @@ const AddNewItem = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { createUser, updateUser } = useContext(AuthContext);
-
-  const [signUpError, setSignUPError] = useState("");
-  const [userImg, setUserImg] = useState("");
-  const imageHostKey = process.env.REACT_APP_imgbb_key;
   const navigate = useNavigate();
-  const handleSignUp = (data) => {
+  //   const handleSignUp = (data) => {
+  //     console.log(data);
+  //     const image = data.image[0];
+
+  //     const formData = new FormData();
+  //     formData.append("image", image);
+  //     const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
+  //     fetch(url, {
+  //       method: "POST",
+  //       body: formData,
+  //     })
+  //       .then((res) => res.json())
+  //       .then((imgData) => {
+  //         if (imgData.success) {
+  //           console.log(imgData.data.url);
+  //           setUserImg(imgData.data.url);
+  //           const userInfo = {
+  //             name: data.name,
+  //             email: data.email,
+  //             password: data.password,
+  //             phone: data.phone,
+  //             photo: imgData.data.url,
+  //             role: data.role,
+  //           };
+  //           setSignUPError("");
+  //           createUser(data.email, data.password)
+  //             .then((result) => {
+  //               const user = result.user;
+  //               console.log(user);
+  //               const updateUserInfo = {
+  //                 displayName: data.name,
+  //                 photoURL: imgData.data.url,
+  //               };
+
+  //               updateUser(updateUserInfo)
+  //                 .then(() => {
+  //                   fetch("http://localhost:5000/users", {
+  //                     method: "POST",
+  //                     headers: {
+  //                       "content-type": "application/json",
+  //                     },
+  //                     body: JSON.stringify(userInfo),
+  //                   })
+  //                     .then((res) => res.json())
+  //                     .then((data) => {
+  //                       console.log("save", data);
+
+  //                       navigate("/dashboard/adminPanel");
+  //                     });
+  //                 })
+  //                 .catch((error) => console.log(error));
+  //               toast("User Created Successfully.");
+  //             })
+  //             .catch((error) => {
+  //               console.log(error);
+  //             });
+  //         }
+  //       });
+  //   };
+  const imageHostKey = process.env.REACT_APP_imgbb_key;
+  const handleAddItem = (data) => {
     console.log(data);
-    const image = data.image[0];
+    const image = data.poster[0];
 
     const formData = new FormData();
     formData.append("image", image);
@@ -32,47 +87,26 @@ const AddNewItem = () => {
       .then((imgData) => {
         if (imgData.success) {
           console.log(imgData.data.url);
-          setUserImg(imgData.data.url);
-          const userInfo = {
-            name: data.name,
-            email: data.email,
-            password: data.password,
-            phone: data.phone,
-            photo: imgData.data.url,
-            role: data.role,
+          const foodInfo = {
+            title: data.title,
+            subtitle: data.subtitle,
+            price: data.price,
+            type: data.type,
+            poster: imgData.data.url,
+            quantities: 200,
           };
-          setSignUPError("");
-          createUser(data.email, data.password)
-            .then((result) => {
-              const user = result.user;
-              console.log(user);
-              const updateUserInfo = {
-                displayName: data.name,
-                photoURL: imgData.data.url,
-              };
-
-              updateUser(updateUserInfo)
-                .then(() => {
-                  fetch("http://localhost:5000/users", {
-                    method: "POST",
-                    headers: {
-                      "content-type": "application/json",
-                    },
-                    body: JSON.stringify(userInfo),
-                  })
-                    .then((res) => res.json())
-                    .then((data) => {
-                      console.log("save", data);
-
-                      navigate("/dashboard/adminPanel");
-                    });
-                })
-                .catch((error) => console.log(error));
-              toast("User Created Successfully.");
-            })
-            .catch((error) => {
-              console.log(error);
-              setSignUPError(error.message);
+          fetch("http://localhost:5000/add-food", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(foodInfo),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log("save", data);
+              toast("Item added Successfully.");
+              navigate("/dashboard/manager/manageItem");
             });
         }
       });
@@ -82,68 +116,73 @@ const AddNewItem = () => {
       <div className="mx-auto p-7 border">
         <h2 className="text-xl text-center">Add a new Food Item</h2>
 
-        <form onSubmit={handleSubmit(handleSignUp)}>
+        <form onSubmit={handleSubmit(handleAddItem)}>
           <div className="form-control ">
             <label className="label">
               {" "}
-              <span className="label-text">Name</span>
+              <span className="label-text">Title</span>
             </label>
             <input
               type="text"
               placeholder="Enter Food Title"
-              {...register("name", {
-                required: "Name is Required",
+              {...register("title", {
+                required: "Title is Required",
               })}
               className="input-bordered input  w-full p-2"
             />
-            {errors.name && (
-              <p className="text-red-500">{errors.name.message}</p>
+            {errors.title && (
+              <p className="text-red-500">{errors.title.message}</p>
             )}
           </div>
-          <div className="form-control ">
+          <div>
             <label className="label">
               {" "}
-              <span className="label-text">Email</span>
+              <span className="label-text">Select a subtitle</span>
             </label>
-            <input
-              type="email"
-              placeholder="Email address"
-              {...register("email", {
-                required: "Email is Required",
-              })}
+            <select
+              {...register("subtitle")}
               className="input-bordered input  w-full p-2"
-            />
-            {errors.email && (
-              <p className="text-red-500">{errors.email.message}</p>
-            )}
+              defaultValue={"Regular Item"}
+            >
+              <option value="Regular Item">Regular Item</option>
+              <option value="Special Item">Special Item</option>
+            </select>
           </div>
-          <div className="form-control">
+
+          <div>
             <label className="label">
               {" "}
-              <span className="label-text">Password</span>
+              <span className="label-text">Type</span>
             </label>
-            <input
-              placeholder="Enter a strong password"
-              type="password"
-              {...register("password", {
-                required: "Password is required",
-                minLength: {
-                  value: 6,
-                  message: "Password must be 6 characters long",
-                },
-                pattern: {
-                  value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/,
-                  message:
-                    "Password must have uppercase, number and special characters",
-                },
-              })}
+            <select
+              {...register("type")}
               className="input-bordered input  w-full p-2"
-            />
-            {errors.password && (
-              <p className="text-red-500">{errors.password.message}</p>
-            )}
+              defaultValue={"LunchItem"}
+            >
+              <option value="LunchItem">Lunch Item</option>
+              <option value="Drinks">Drinks</option>
+              <option value="SnackItem">Snack Item</option>
+              <option value="Breakfast">Breakfast</option>
+            </select>
           </div>
           <div className="flex justify-between items-center">
+            <div className="form-control">
+              <label className="label">
+                {" "}
+                <span className="label-text">Food Price</span>
+              </label>
+              <input
+                placeholder="Price"
+                type="text"
+                {...register("price", {
+                  required: "Price is required",
+                })}
+                className="input-bordered input  w-full p-2"
+              />
+              {errors.price && (
+                <p className="text-red-500">{errors.price.message}</p>
+              )}
+            </div>
             <div className="form-control">
               <label className="label">
                 {" "}
@@ -152,55 +191,22 @@ const AddNewItem = () => {
               <input
                 className="input-bordered input  w-full p-2"
                 type="file"
-                {...register("image", {
+                {...register("poster", {
                   required: "Photo is Required",
                 })}
               />
-              {errors.img && (
-                <p className="text-red-500">{errors.img.message}</p>
+              {errors.poster && (
+                <p className="text-red-500">{errors.poster.message}</p>
               )}
-            </div>
-            <div className="form-control">
-              <label className="label">
-                {" "}
-                <span className="label-text">Phone Number</span>
-              </label>
-              <input
-                placeholder="Phone Number"
-                type="text"
-                {...register("phone", {
-                  required: "Phone number is required",
-                })}
-                className="input-bordered input  w-full p-2"
-              />
-              {errors.password && (
-                <p className="text-red-500">{errors.password.message}</p>
-              )}
-            </div>
-            <div>
-              <label className="label">
-                {" "}
-                <span className="label-text">Select a role</span>
-              </label>
-              <select
-                {...register("role")}
-                className="input-bordered input  w-full p-2"
-                defaultValue={"student"}
-              >
-                <option value="admin">Admin</option>
-                <option value="manager">Manager</option>
-                <option value="cashier">Cashier</option>
-                <option value="deliveryMan">Delivery Man</option>
-              </select>
             </div>
           </div>
 
           <input
             className="btn btn-accent w-full mt-4"
-            value="Create Account"
+            value="Add Food Item"
             type="submit"
           />
-          {signUpError && <p className="text-red-600">{signUpError}</p>}
+          {/* {signUpError && <p className="text-red-600">{signUpError}</p>} */}
         </form>
       </div>
     </div>
