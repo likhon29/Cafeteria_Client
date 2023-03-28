@@ -12,65 +12,7 @@ const AddNewItem = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  //   const handleSignUp = (data) => {
-  //     console.log(data);
-  //     const image = data.image[0];
-
-  //     const formData = new FormData();
-  //     formData.append("image", image);
-  //     const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
-  //     fetch(url, {
-  //       method: "POST",
-  //       body: formData,
-  //     })
-  //       .then((res) => res.json())
-  //       .then((imgData) => {
-  //         if (imgData.success) {
-  //           console.log(imgData.data.url);
-  //           setUserImg(imgData.data.url);
-  //           const userInfo = {
-  //             name: data.name,
-  //             email: data.email,
-  //             password: data.password,
-  //             phone: data.phone,
-  //             photo: imgData.data.url,
-  //             role: data.role,
-  //           };
-  //           setSignUPError("");
-  //           createUser(data.email, data.password)
-  //             .then((result) => {
-  //               const user = result.user;
-  //               console.log(user);
-  //               const updateUserInfo = {
-  //                 displayName: data.name,
-  //                 photoURL: imgData.data.url,
-  //               };
-
-  //               updateUser(updateUserInfo)
-  //                 .then(() => {
-  //                   fetch("http://localhost:5000/users", {
-  //                     method: "POST",
-  //                     headers: {
-  //                       "content-type": "application/json",
-  //                     },
-  //                     body: JSON.stringify(userInfo),
-  //                   })
-  //                     .then((res) => res.json())
-  //                     .then((data) => {
-  //                       console.log("save", data);
-
-  //                       navigate("/dashboard/adminPanel");
-  //                     });
-  //                 })
-  //                 .catch((error) => console.log(error));
-  //               toast("User Created Successfully.");
-  //             })
-  //             .catch((error) => {
-  //               console.log(error);
-  //             });
-  //         }
-  //       });
-  //   };
+  // 
   const imageHostKey = process.env.REACT_APP_imgbb_key;
   const handleAddItem = (data) => {
     console.log(data);
