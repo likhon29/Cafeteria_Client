@@ -88,8 +88,8 @@ const Login = () => {
           {loginError && <p className="text-red-600">{loginError}</p>}
         </form>
         <p>
-          New to JU_BOOK_EXPRESS{" "}
-          <Link className="text-secondary" to="/signup">
+          New to JU_Cafeteria{" "}
+          <Link className="text-secondary underline" to="/signup">
             Create new Account
           </Link>
         </p>

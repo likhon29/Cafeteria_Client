@@ -6,7 +6,7 @@ import { AuthContext } from "../../../../Contexts/AuthProvider/AuthProvider";
 const MyOrder = () => {
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/orders?email=${user?.email}`;
+  const url = `http://localhost:5000/orders/${user?.email}`;
 
   const { data: orders = [] } = useQuery({
     queryKey: ["orders", user?.email],
@@ -27,7 +27,7 @@ const MyOrder = () => {
       <h3 className="text-3xl mb-5">My Orders</h3>
       <div className="overflow-x-auto">
         <table className="table w-full">
-          <thead>
+          {orders.length>0 ? <thead>
             <tr>
               <th></th>
               <th>transactionID</th>
@@ -38,7 +38,7 @@ const MyOrder = () => {
               <th>Status</th>
               <th>Action</th>
             </tr>
-          </thead>
+          </thead> : <div className="flex justify-center items-center h-[200px] bg-slate-200">No Orders Founded</div>}
           <tbody>
             {orders &&
               orders?.map((order, i) => (

@@ -11,7 +11,7 @@ const SocialLogin = () => {
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
-  
+
   const handleGoogleSIgnIn = () => {
     googleSignIn()
       .then((result) => {
@@ -22,18 +22,28 @@ const SocialLogin = () => {
           name: user.displayName,
           email: user.email,
           image: user.photoURL,
-          role: "buyer",
+          role: "customer",
+          customerType: "student",
         };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("save", data);
 
-        
-        navigate(from, { replace: true });
-        toast.success("Welcome to Ju Book Express...");
+            // navigate(from, { replace: true });
+            navigate("/");
+            toast.success("Welcome to Ju Cafeteria...");
+          });
       })
       .catch((err) => console.error(err));
   };
 
-
- 
   return (
     <div className="btn btn-outline w-full">
       <p className="text-center">

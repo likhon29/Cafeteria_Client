@@ -55,7 +55,7 @@ const Navbar2 = () => {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            {navItems}
+           {(user?.role ==="customer") ?  navItems  :<></> }
           </ul>
         </div>
         <NavLink to="/" className="flex   items-center lg:mx-20 md:mx-10">
@@ -64,7 +64,7 @@ const Navbar2 = () => {
         </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-0">{navItems}</ul>
+        <ul className="menu menu-horizontal p-0">{(user?.role ==="customer") ?  navItems  :<></> }</ul>
       </div>
       <div className="navbar-end">
         {user?.uid ? (

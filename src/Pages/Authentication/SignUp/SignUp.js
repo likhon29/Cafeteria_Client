@@ -77,7 +77,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="h-[700px] flex justify-center items-center ">
+    <div className="flex justify-center items-center my-5 ">
       <div className="w-100 p-7 border">
         <h2 className="text-xl text-center">Sign Up</h2>
         <form onSubmit={handleSubmit(handleSignUp)}>
@@ -171,7 +171,7 @@ const Signup = () => {
         </form>
         <p className="pt-3">
           Already have an account{" "}
-          <Link className="text-secondary" to="/login">
+          <Link className="text-secondary underline" to="/login">
             Please Login
           </Link>
         </p>
