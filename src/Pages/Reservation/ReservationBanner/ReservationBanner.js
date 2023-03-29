@@ -13,11 +13,7 @@ const ReservationBanner = () => {
     <header className="my-6">
       <div className="hero">
         <div className="hero-content flex-col  lg:flex-row-reverse">
-          {/* <img
-            src={chair}
-            alt="dentist chair"
-            className="max-w-sm rounded-lg shadow-2xl"
-          /> */}
+         
           <ReservationForm selectedDate={selectedDate}></ReservationForm>
           <div className="mr-10 border  sm:w-full">
             <DayPicker
