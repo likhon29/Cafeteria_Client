@@ -24,7 +24,8 @@ import CardDetails from "./../../Pages/FoodMenu/CardDetails/CardDetails";
 import MyReservation from "../../Pages/Dashboard/Customer/MyReservation/MyReservation";
 import PaymentSuccess from "../../Pages/Dashboard/Customer/MyOrder/PaymentSuccess";
 import ManageOrders from "../../Pages/Dashboard/Manager/ManageOrders/ManageOrders";
-import AddNewItem from './../../Pages/Dashboard/Manager/AddNewItem/AddNewItem';
+import AddNewItem from "./../../Pages/Dashboard/Manager/AddNewItem/AddNewItem";
+import OrderDetails from "../../Pages/Dashboard/Customer/MyOrder/OrderDetails";
 
 const router = createBrowserRouter([
   {
@@ -53,9 +54,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/menu",
-        element: <PrivateRoute>
-        <Menu></Menu>
-      </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Menu></Menu>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/cardDetails",
@@ -105,6 +108,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/myOrders",
         element: <MyOrder></MyOrder>,
+      },
+      {
+        path: "/dashboard/orders/:id",
+        element: <OrderDetails></OrderDetails>,
+        loader: ({ params }) =>
+          fetch(
+            `http://localhost:5000/order/${params.id}`
+          ),
       },
       {
         path: "/dashboard/payment/success",
@@ -157,41 +168,28 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:"/dashboard/manageOrders",
+        path: "/dashboard/manageOrders",
         element: (
           // <ManagerRoute></ManagerRoute>
           <ManageOrders></ManageOrders>
-        )
+        ),
       },
       {
-        path:"/dashboard/allCustomers",
+        path: "/dashboard/allCustomers",
         element: (
           // <ManagerRoute></ManagerRoute>
           <AllCustomer></AllCustomer>
-        )
+        ),
       },
       {
         path: "/dashboard/manager/manageItem",
-        element: (
-          
-            <ManageItem></ManageItem>
-          
-        ),
-        children:[
-          {
-            
-          }
-        ]
+        element: <ManageItem></ManageItem>,
+        children: [{}],
       },
       {
         path: "/dashboard/manager/manageItem/addNewItem",
-        element: (
-          
-            <AddNewItem></AddNewItem>
-          
-        ),
-      }
-      
+        element: <AddNewItem></AddNewItem>,
+      },
     ],
   },
   {

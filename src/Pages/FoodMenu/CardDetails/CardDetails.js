@@ -4,14 +4,15 @@ import { Link, useLoaderData } from "react-router-dom";
 import { deleteShoppingCart, removeFromDb } from "../../../Utilities/fakedb";
 import { useState } from "react";
 import ReviewItem from "./../ReviewItem/ReviewItem";
-import Cart1 from './../../Dashboard/Customer/Cart/Cart1';
+import Cart1 from "./../../Dashboard/Customer/Cart/Cart1";
 
 const CardDetails = () => {
   const { initialCart } = useLoaderData(); // { products: products, initialCart: initialCart }
   const [cart, setCart] = useState(initialCart);
 
   const handleRemoveItem = (id) => {
-    const remaining = cart.filter((product) => product.id !== id);
+    console.log(id);
+    const remaining = cart.filter((product) => product._id !== id);
     setCart(remaining);
     removeFromDb(id);
   };
@@ -44,7 +45,10 @@ const CardDetails = () => {
         {cart.length === 0 && (
           <div className="flex h-72 justify-center items-center">
             <h2>
-              No Items for Review. Please <Link to="/menu"><span className="underline text-blue-700">Shop more</span></Link>
+              No Items for Review. Please{" "}
+              <Link to="/menu">
+                <span className="underline text-blue-700">Shop more</span>
+              </Link>
             </h2>
           </div>
         )}

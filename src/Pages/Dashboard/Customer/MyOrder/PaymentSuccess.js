@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-
+import { deleteShoppingCart } from "../../../../Utilities/fakedb";
 const PaymentSuccess = () => {
   const location = useLocation();
   const query = new URLSearchParams(location.search);

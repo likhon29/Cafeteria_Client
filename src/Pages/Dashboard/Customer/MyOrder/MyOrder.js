@@ -20,8 +20,12 @@ const MyOrder = () => {
       return data;
     },
   });
-
+ 
   console.log(orders);
+
+  const handleShowDetails = (id)=>{
+    console.log(id)
+  }
   return (
     <div className="mx-20">
       <h3 className="text-3xl mb-5">My Orders</h3>
@@ -38,7 +42,7 @@ const MyOrder = () => {
               <th>Status</th>
               <th>Action</th>
             </tr>
-          </thead> : <div className="flex justify-center items-center h-[200px] bg-slate-200">No Orders Founded</div>}
+          </thead> : <div className="flex justify-center items-center h-[200px] bg-slate-200">No Orders Founded Please <Link to="/menu"><span className="underline text-blue-700">Shop more</span></Link></div>}
           <tbody>
             {orders &&
               orders?.map((order, i) => (
@@ -65,7 +69,7 @@ const MyOrder = () => {
                     )}
                   </td>
                   <td>
-                    <button className="btn btn-sm">Show Details</button>
+                    <Link to={`/dashboard/orders/${order._id}`}><button className="btn btn-sm">Show Details</button></Link>
                   </td>
                 </tr>
               ))}

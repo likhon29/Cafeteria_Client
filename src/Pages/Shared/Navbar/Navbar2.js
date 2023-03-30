@@ -55,7 +55,7 @@ const Navbar2 = () => {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-           {(user?.role ==="customer") ?  navItems  :<></> }
+          {navItems}
           </ul>
         </div>
         <NavLink to="/" className="flex   items-center lg:mx-20 md:mx-10">
@@ -64,7 +64,7 @@ const Navbar2 = () => {
         </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-0">{(user?.role ==="customer") ?  navItems  :<></> }</ul>
+        <ul className="menu menu-horizontal p-0">{navItems}</ul>
       </div>
       <div className="navbar-end">
         {user?.uid ? (
@@ -83,15 +83,15 @@ const Navbar2 = () => {
                     width="35px"
                   />
                   <span className="sr-only">Notifications</span>
-                  <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-1 -right-1 dark:border-gray-900">
+                  {/* <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-1 -right-1 dark:border-gray-900">
                     20
-                  </div>
+                  </div> */}
                 </button>
               </NavLink>
             )}
             <NavLink to="/dashboard">
               {user.photoURL ? (
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center mr-4">
                   <img
                     src={user.photoURL}
                     className="rounded-full border-solid  border-primary border-2"
@@ -99,14 +99,14 @@ const Navbar2 = () => {
                     width="55px"
                   />
 
-                  <div className="pr-4">
+                  {/* <div className="pr-4">
                     <img
                       src="https://static.thenounproject.com/png/551749-200.png"
                       className=""
                       alt=""
                       width="20px"
                     />
-                  </div>
+                  </div> */}
                 </div>
               ) : (
                 <div className="flex items-center justify-center">
@@ -120,7 +120,7 @@ const Navbar2 = () => {
               )}
             </NavLink>
 
-            <button onClick={handleLogOut}>Logout</button>
+            <button onClick={handleLogOut} className="bg-[red] text-white p-2 rounded">Logout</button>
           </>
         ) : (
           <NavLink to="/login">Login</NavLink>

@@ -33,7 +33,7 @@ const Item = ({ item, setSelectedItem, handleAddToCart }) => {
               className="btn btn-sm "
               onClick={() => setSelectedItem(item)}
             >
-              Order
+              Details
             </label>
           </div>
         </div>

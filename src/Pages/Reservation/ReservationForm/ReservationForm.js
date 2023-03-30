@@ -7,6 +7,12 @@ import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 const ReservationForm = ({ selectedDate }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+
+const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+const d = new Date(selectedDate);
+let day = weekday[d.getDay()];
+console.log(day)
   const handleBooking = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -27,6 +33,8 @@ const ReservationForm = ({ selectedDate }) => {
       reservationDate,
       title: priceList[0],
       price: priceList[1].split("/")[0],
+      paid:false,
+      transactionId:''
     };
     console.log(bookingInfo);
 
@@ -39,14 +47,13 @@ const ReservationForm = ({ selectedDate }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+       window.location.replace(data.url)
         if (data.acknowledged) {
           // setIsBooked(true);
-          navigate("/dashboard/myReservation");
-          toast.success("Booking confirmed");
+          // navigate("/dashboard/myReservation");
+          // toast.success("Booking confirmed");
           // refetch();
         } else {
-          toast.error(data.message);
         }
       });
   };
@@ -57,13 +64,15 @@ const ReservationForm = ({ selectedDate }) => {
       day = ("0" + date.getDate()).slice(-2);
     return [date.getFullYear(), mnth, day].join("-");
   }
-
+  var date = new Date();
+  const today = convert(date);
+  console.log(today);
   console.log(convert(selectedDate));
   // const dateList=selectedDate.split('');
   // console.log(dateList[1])
   return (
     <div className="border  p-5">
-      <h1>Reservation Form</h1>
+      <h1 className="text-center text-fuchsia-800 font-bold">Reservation Form</h1>
       <form onSubmit={handleBooking} className="m-3">
         <input
           name="email"
@@ -82,13 +91,14 @@ const ReservationForm = ({ selectedDate }) => {
         <input
           name="reservationDate"
           type="text"
-          value={convert(selectedDate)}
+          
+          value={convert(selectedDate) }
           readOnly={true}
           className="input m-3 w-full input-bordered"
         />
         <div className="flex justify-between">
           <select className="m-3 w-full border p-2" name="slot" id="slot">
-            <option value="morning">Morning</option>
+            {/* <option value="morning">Morning</option> */}
             <option value="afternoon">Afternoon</option>
             <option value="evening">Evening</option>
           </select>
@@ -109,9 +119,10 @@ const ReservationForm = ({ selectedDate }) => {
           name="phone"
           type="text"
           placeholder="Phone Number"
-          className="input m-3 w-full input-bordered"
+          className="input m-3 w-full input-bordered" required
         />
         <textarea
+        required
           className="m-3 w-full border p-2"
           id="description"
           placeholder="Write details about your reservation"
@@ -120,11 +131,18 @@ const ReservationForm = ({ selectedDate }) => {
           cols="50"
         ></textarea>
         <br />
-        <input
+        
+        
+        {
+
+          <input
           className="btn m-3 btn-accent w-full"
           type="submit"
           value="Submit"
+          disabled={(day !== 'Friday' && day !== 'Saturday') ? true : false}
         />
+        }
+       
       </form>
     </div>
   );
