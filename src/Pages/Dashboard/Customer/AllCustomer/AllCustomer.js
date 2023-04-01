@@ -23,7 +23,7 @@ const AllCustomer = () => {
   console.log(allCustomer);
   const [customers, setCustomers] = useState(allCustomer);
   const handleMakeAdmin = (id) => {
-    fetch(`https://ju-book-express-server.vercel.app/users/admin/${id}`, {
+    fetch(`http://localhost:5000/users/admin/${id}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -92,7 +92,7 @@ const AllCustomer = () => {
                   <td>
                     {" "}
                     <img
-                      src={user.photoURL}
+                      src={buyers.photo}
                       alt=""
                       width="50px"
                       height=""

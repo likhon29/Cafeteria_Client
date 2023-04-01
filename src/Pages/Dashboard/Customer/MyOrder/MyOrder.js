@@ -20,29 +20,38 @@ const MyOrder = () => {
       return data;
     },
   });
- 
+
   console.log(orders);
 
-  const handleShowDetails = (id)=>{
-    console.log(id)
-  }
+  const handleShowDetails = (id) => {
+    console.log(id);
+  };
   return (
     <div className="mx-20">
       <h3 className="text-3xl mb-5">My Orders</h3>
       <div className="overflow-x-auto">
         <table className="table w-full">
-          {orders.length>0 ? <thead>
-            <tr>
-              <th></th>
-              <th>transactionID</th>
+          {orders.length > 0 ? (
+            <thead>
+              <tr>
+                <th></th>
+                <th>transactionID</th>
 
-              <th>Amount</th>
-              <th>Order Date</th>
-              {/* <th>Date</th> */}
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead> : <div className="flex justify-center items-center h-[200px] bg-slate-200">No Orders Founded Please <Link to="/menu"><span className="underline text-blue-700">Shop more</span></Link></div>}
+                <th>Amount</th>
+                <th>Order Date</th>
+                {/* <th>Date</th> */}
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+          ) : (
+            <div className="flex justify-center items-center h-[200px] bg-slate-200">
+              No Orders Founded Please{" "}
+              <Link to="/menu">
+                <span className="underline text-blue-700">Shop more</span>
+              </Link>
+            </div>
+          )}
           <tbody>
             {orders &&
               orders?.map((order, i) => (
@@ -69,7 +78,9 @@ const MyOrder = () => {
                     )}
                   </td>
                   <td>
-                    <Link to={`/dashboard/orders/${order._id}`}><button className="btn btn-sm">Show Details</button></Link>
+                    <Link to={`/dashboard/orders/${order._id}`}>
+                      <button className="btn btn-sm">Show Details</button>
+                    </Link>
                   </td>
                 </tr>
               ))}

@@ -10,6 +10,7 @@ import useCustomer from "./../../Hooks/useCustomer";
 import useManager from "./../../Hooks/useManager";
 import useCashier from "./../../Hooks/useCashier";
 import useDeliveryMan from "./../../Hooks/useDeliveryMan";
+import Reservation from './../../Pages/Reservation/Reservation/Reservation';
 
 const DashBoardLayout = () => {
   const { user } = useContext(AuthContext);
@@ -53,9 +54,16 @@ const DashBoardLayout = () => {
                   <NavLink to="/dashboard/adminPanel">Admin Panel</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/manageItem">Manage Item</NavLink>
+                  <NavLink to="/dashboard/sales-report">Sales Report</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/stock-report">Stock Report</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/revenue">Revenue</NavLink>
                 </li>
               </>
+                
             )}
             {isCustomer && (
               <>
@@ -84,10 +92,10 @@ const DashBoardLayout = () => {
                   <NavLink to="/dashboard/profile">Profile</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/myOrders">Manage Order</NavLink>
+                  <NavLink to="/dashboard/cashier/manage-order">Manage Order</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/myWishLists">Payments</NavLink>
+                  <NavLink to="/dashboard/cashier/manage-reservation">Manage Reservation</NavLink>
                 </li>
               </>
             )}
@@ -97,7 +105,7 @@ const DashBoardLayout = () => {
                   <NavLink to="/dashboard/profile">Profile</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/manageOrders">Manage Orders</NavLink>
+                  <NavLink to="/dashboard/manager/manageOrders">Manage Orders</NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/allCustomers">

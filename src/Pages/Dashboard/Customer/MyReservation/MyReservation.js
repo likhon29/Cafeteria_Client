@@ -26,9 +26,9 @@ const MyReservation = () => {
 
   const handlePayment = (id) => {
     console.log(id);
-      const bookingInfo={
-        id:id
-      };
+    const bookingInfo = {
+      id: id,
+    };
     fetch("http://localhost:5000/booking-payment", {
       method: "POST",
       headers: {
@@ -55,23 +55,30 @@ const MyReservation = () => {
       <h3 className="text-3xl mb-5">My Reservation</h3>
       <div className="overflow-x-auto">
         <table className="table w-full">
-          {
-            orders.length > 0 ? <thead>
-            <tr>
-              <th></th>
-              <th>Title</th>
+          {orders.length > 0 ? (
+            <thead>
+              <tr>
+                <th></th>
+                <th>Title</th>
 
-              <th>Reservation Date</th>
-              <th>Booking Date</th>
-              <th>Price</th>
-              {/* <th>Date</th> */}
-              <th>Payment</th>
-              <th>Action</th>
-            </tr>
-          </thead> :<div className="flex justify-center items-center h-[200px] bg-slate-200">No Reservation Founded Please 
-           <Link to="/reservation"><span className="underline text-blue-700 px-1"> Booking</span> from Here</Link></div>
-          }
-          
+                <th>Reservation Date</th>
+                <th>Booking Date</th>
+                <th>Price</th>
+                {/* <th>Date</th> */}
+                <th>Payment</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+          ) : (
+            <div className="flex justify-center items-center h-[200px] bg-slate-200">
+              No Reservation Founded Please
+              <Link to="/reservation">
+                <span className="underline text-blue-700 px-1"> Booking</span>{" "}
+                from Here
+              </Link>
+            </div>
+          )}
+
           <tbody>
             {orders &&
               orders?.map((order, i) => (
@@ -88,14 +95,12 @@ const MyReservation = () => {
                                             className='btn btn-primary btn-sm'
                                         >Pay</button> */}
                     {order.price && !order.paid && (
-                      
-                        <button
-                          onClick={() => handlePayment(order._id)}
-                          className="btn btn-primary btn-sm"
-                        >
-                          Pay
-                        </button>
-                     
+                      <button
+                        onClick={() => handlePayment(order._id)}
+                        className="btn btn-primary btn-sm"
+                      >
+                        Pay
+                      </button>
                     )}
                     {order.price && order.paid && (
                       <span className="text-green-500">Paid</span>

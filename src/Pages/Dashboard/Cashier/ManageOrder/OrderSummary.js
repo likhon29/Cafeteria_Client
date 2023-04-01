@@ -1,13 +1,26 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
-import ItemInfo from "./ItemInfo";
 import { useState } from "react";
-import OrderTimeLine from "./OrderTimeLine";
-const OrderDetails = () => {
+import ItemInfo from "../../Customer/MyOrder/ItemInfo";
+import { toast } from "react-hot-toast";
+const OrderSummary = () => {
+  
   const orderInfo = useLoaderData();
   const order = orderInfo;
-
-  
+  const [paymentBTN, setPaymentBTN] = useState(order.pmr);
+  const handlePaymentBTN = () => {
+    fetch(`http://localhost:5000/cashier/orders/${order._id}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          toast.success("Payment Received and Order Confirmation");
+          //   refetch();
+          setPaymentBTN(true);
+        }
+      });
+  };
   return (
     <div>
       <section class="">
@@ -20,10 +33,20 @@ const OrderDetails = () => {
                   {order._id}
                 </h1>
                 <div className="flex">
-                 
+                  {paymentBTN ? (
+                    <button className=" bg-[#2bd82b] border-none mx-3 p-2 text-white rounded">
+                      Payment Received
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handlePaymentBTN}
+                      className="btn bg-[blue] border-none mx-3"
+                    >
+                      Pending
+                    </button>
+                  )}
                 </div>
               </div>
-              <OrderTimeLine></OrderTimeLine>
               <div class="">
                 <div class="">
                   <div class="flex justify-around items-center">
@@ -177,4 +200,4 @@ const OrderDetails = () => {
   );
 };
 
-export default OrderDetails;
+export default OrderSummary;

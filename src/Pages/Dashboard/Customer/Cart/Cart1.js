@@ -48,10 +48,10 @@ const Cart1 = (props) => {
       .then((data) => {
         window.location.replace(data.url);
         clearCart();
-        console.log("data",data);
+        console.log("data", data);
         if (data.acknowledged) {
-          console.log("Enter")
-          // 
+          console.log("Enter");
+          //
           //   setCart([]);
           // setIsBooked(true);
           //   navigate("/dashboard/myReservation");
@@ -122,15 +122,15 @@ const Cart1 = (props) => {
               required
             />
             <input
-            required
+              required
               placeholder="Write your shipping address "
               name="address"
               type="text"
               className="input m-1 w-80 py-5  input-bordered"
             />
-           
-            <input 
-              className="btn mx-3 my-2 btn-success" 
+
+            <input
+              className="btn mx-3 my-2 btn-success"
               disabled={grandTotal === 0 ? true : false}
               value="Place Your Order"
               type="submit"

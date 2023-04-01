@@ -92,7 +92,7 @@ const AdminPanel = () => {
                   <td>
                     {" "}
                     <img
-                      src={user.photoURL}
+                      src={buyers.photo}
                       alt=""
                       width="50px"
                       height=""

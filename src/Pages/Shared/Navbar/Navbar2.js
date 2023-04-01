@@ -5,11 +5,21 @@ import { NavLink } from "react-router-dom";
 import logo from "../../../Assets/img/JU_logo.png";
 import useCustomer from "./../../../Hooks/useCustomer";
 import "./Navbar2.css";
+import axios from "axios";
 const Navbar2 = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [userInfo, setUserInfo] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/${user?.email}`)
+      .then((response) => response.json())
+      .then((data) => setUserInfo(data.data));
+  }, [user?.email]);
   const [isCustomer] = useCustomer(user?.email);
   const handleLogOut = () => {
-    logOut().then().catch();
+    logOut()
+      .then((data) => {})
+      .catch();
   };
 
   const navItems = (
@@ -31,6 +41,22 @@ const Navbar2 = () => {
       </li>
     </React.Fragment>
   );
+
+  const navItems1 = (
+    <React.Fragment>
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+
+      <li>
+        <NavLink to="/gallery">Gallery</NavLink>
+      </li>
+      <li>
+        <NavLink to="/about">About US</NavLink>
+      </li>
+    </React.Fragment>
+  );
+  console.log(userInfo);
   return (
     <div className="sticky bg-cyan-50 top-0 z-50  navbar md:px-10 lg:px-15  flex justify-between items-center">
       <div className="navbar-start">
@@ -55,7 +81,10 @@ const Navbar2 = () => {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-          {navItems}
+            {
+              navItems
+            }
+            {/* {userInfo?.role === "customer" ? navItems : navItems1} */}
           </ul>
         </div>
         <NavLink to="/" className="flex   items-center lg:mx-20 md:mx-10">
@@ -64,7 +93,10 @@ const Navbar2 = () => {
         </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-0">{navItems}</ul>
+        <ul className="menu menu-horizontal p-0">
+          {navItems}
+          {/* {userInfo?.role === "customer" ? navItems : navItems1} */}
+        </ul>
       </div>
       <div className="navbar-end">
         {user?.uid ? (
@@ -120,7 +152,12 @@ const Navbar2 = () => {
               )}
             </NavLink>
 
-            <button onClick={handleLogOut} className="bg-[red] text-white p-2 rounded">Logout</button>
+            <button
+              onClick={handleLogOut}
+              className="bg-[red] text-white p-2 rounded"
+            >
+              Logout
+            </button>
           </>
         ) : (
           <NavLink to="/login">Login</NavLink>

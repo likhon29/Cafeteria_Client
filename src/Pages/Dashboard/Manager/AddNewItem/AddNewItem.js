@@ -12,7 +12,7 @@ const AddNewItem = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  // 
+  //
   const imageHostKey = process.env.REACT_APP_imgbb_key;
   const handleAddItem = (data) => {
     console.log(data);

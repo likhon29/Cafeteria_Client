@@ -85,12 +85,11 @@ const Menu = () => {
     const searchValue = form.item.value;
     console.log(searchValue);
     fetch(`http://localhost:5000/food/title/${searchValue}`)
-    .then((response) => response.json())
-    .then((data) => {
-      setFoodItems(data)
-      form.reset()
-    });
-
+      .then((response) => response.json())
+      .then((data) => {
+        setFoodItems(data);
+        form.reset();
+      });
   };
 
   if (isLoading) {

@@ -23,9 +23,10 @@ const Profile = () => {
             className="rounded-full border-solid w-1/5 border-primary border-2 -mt-3"
             alt=""
           />
-          
         </div>
-        <div className="text-right"><button className="btn btn-sm m-3 -mt-10">Edit Profile</button></div>
+        <div className="text-right">
+          <button className="btn btn-sm m-3 -mt-10">Edit Profile</button>
+        </div>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <tbody>
             <tr class="border-b border-gray-200 dark:border-gray-700">
@@ -67,7 +68,7 @@ const Profile = () => {
               </th>
 
               <td class="px-8 py-4">
-               {userInfo?.customerType && userInfo.customerType} 
+                {userInfo?.customerType && userInfo.customerType}
               </td>
             </tr>
           </tbody>

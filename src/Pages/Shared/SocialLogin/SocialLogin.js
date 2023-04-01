@@ -21,7 +21,7 @@ const SocialLogin = () => {
         const userInfo = {
           name: user.displayName,
           email: user.email,
-          image: user.photoURL,
+          photo: user.photoURL,
           role: "customer",
           customerType: "student",
         };

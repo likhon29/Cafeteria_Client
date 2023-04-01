@@ -1,52 +1,63 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../../Contexts/AuthProvider/AuthProvider";
 
-const ManageOrders = () => {
+const ManageOrder = () => {
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/manager/orders`;
+  const url = `http://localhost:5000/orders/`;
 
   const { data: orders = [] } = useQuery({
     queryKey: ["orders", user?.email],
     queryFn: async () => {
-      const res = await fetch(url, {});
+      const res = await fetch(url, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
       const data = await res.json();
       return data;
     },
   });
 
-  const filteredData = orders.filter((order) => order.pmr === true && order.processed===false);
-  console.log(filteredData);
   console.log(orders);
+
+ 
   return (
     <div className="mx-20">
       <h3 className="text-3xl mb-5">Manage Orders</h3>
       <div className="overflow-x-auto">
         <table className="table w-full">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Order ID</th>
+          {orders.length > 0 ? (
+            <thead>
+              <tr>
+                <th></th>
+                <th>transactionID</th>
 
-              {/* <th>Amount</th> */}
-              {/* <th>Order Date</th> */}
-              {/* <th>Date</th> */}
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
+                <th>Amount</th>
+                <th>Order Date</th>
+                {/* <th>Date</th> */}
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+          ) : (
+            <div className="flex justify-center items-center h-[200px] bg-slate-200">
+              No Orders Founded 
+              
+            </div>
+          )}
           <tbody>
-            {filteredData &&
-              filteredData?.map((order, i) => (
+            {orders &&
+              orders?.map((order, i) => (
                 <tr key={order._id}>
                   <th>{i + 1}</th>
-                  <td>{order._id}</td>
+                  <td>{order.transactionId}</td>
 
-                  {/* <td>{order.price} Tk.</td> */}
+                  <td>{order.price} Tk.</td>
                   {/* <td>{booking.bookingDate.split('T')[0]}</td> */}
-                  {/* <td>{order?.orderDate?.split("T")[0]}</td> */}
+                  <td>{order?.orderDate?.split("T")[0]}</td>
                   <td>
                     {/* <button
                                             className='btn btn-primary btn-sm'
@@ -63,10 +74,8 @@ const ManageOrders = () => {
                     )}
                   </td>
                   <td>
-                    <Link to={`/dashboard/manager/orders/${order._id}`}>
-                      <button className="btn btn-sm">
-                        Handover to Delivery Man
-                      </button>
+                    <Link to={`/dashboard/cashier/orders/${order._id}`}>
+                      <button className="btn btn-sm">Show Details</button>
                     </Link>
                   </td>
                 </tr>
@@ -78,4 +87,4 @@ const ManageOrders = () => {
   );
 };
 
-export default ManageOrders;
+export default ManageOrder;

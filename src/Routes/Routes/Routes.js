@@ -26,6 +26,11 @@ import PaymentSuccess from "../../Pages/Dashboard/Customer/MyOrder/PaymentSucces
 import ManageOrders from "../../Pages/Dashboard/Manager/ManageOrders/ManageOrders";
 import AddNewItem from "./../../Pages/Dashboard/Manager/AddNewItem/AddNewItem";
 import OrderDetails from "../../Pages/Dashboard/Customer/MyOrder/OrderDetails";
+import Report from "./../../Pages/Dashboard/Admin/Report/Report";
+import ManageOrder from "../../Pages/Dashboard/Cashier/ManageOrder/ManageOrder";
+import ManageReservation from "../../Pages/Dashboard/Cashier/ManageReservation/ManageReservation";
+import OrderSummary from "../../Pages/Dashboard/Cashier/ManageOrder/OrderSummary";
+import HandOver from "../../Pages/Dashboard/Manager/ManageOrders/HandOver";
 
 const router = createBrowserRouter([
   {
@@ -113,9 +118,7 @@ const router = createBrowserRouter([
         path: "/dashboard/orders/:id",
         element: <OrderDetails></OrderDetails>,
         loader: ({ params }) =>
-          fetch(
-            `http://localhost:5000/order/${params.id}`
-          ),
+          fetch(`http://localhost:5000/order/${params.id}`),
       },
       {
         path: "/dashboard/payment/success",
@@ -152,6 +155,30 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/dashboard/sales-report",
+        element: (
+          <AdminRoute>
+            <Report></Report>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/stock-report",
+        element: (
+          <AdminRoute>
+            <Report></Report>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/revenue",
+        element: (
+          <AdminRoute>
+            <Report></Report>
+          </AdminRoute>
+        ),
+      },
+      {
         path: "/dashboard/manageItem",
         element: (
           <AdminRoute>
@@ -168,11 +195,17 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/manageOrders",
+        path: "/dashboard/manager/manageOrders",
         element: (
           // <ManagerRoute></ManagerRoute>
           <ManageOrders></ManageOrders>
         ),
+      },
+      {
+        path: "/dashboard/manager/orders/:id",
+        element: <HandOver></HandOver>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/order/${params.id}`),
       },
       {
         path: "/dashboard/allCustomers",
@@ -189,6 +222,21 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/manager/manageItem/addNewItem",
         element: <AddNewItem></AddNewItem>,
+      },
+      // cashier routes
+      {
+        path: "/dashboard/cashier/manage-order",
+        element: <ManageOrder></ManageOrder>,
+      },
+      {
+        path: "/dashboard/cashier/manage-reservation",
+        element: <ManageReservation></ManageReservation>,
+      },
+      {
+        path: "/dashboard/cashier/orders/:id",
+        element: <OrderSummary></OrderSummary>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/order/${params.id}`),
       },
     ],
   },
