@@ -218,8 +218,8 @@ const Faq = () => {
             </div>
           </div>
 
-          <div className="mt-10">
-            <img src="images/faq.png" alt="" width="100%" />
+          <div className="mt-10 w-full">
+            <img src="https://www.shutterstock.com/image-vector/faq-blue-typography-banner-260nw-1356204374.jpg" alt="" width="100%" />
           </div>
         </div>
       </section> 

@@ -1,12 +1,12 @@
-import React from 'react';
-
+import React from "react";
+import "./Feedback.css";
 const Feedback = () => {
-    return (
-        <div>
-             <section className="mx-10 lg:mx-36 my-20 lg:p-20">
+  return (
+    <div>
+      <section className="mx-10 lg:mx-36 my-20 lg:p-20">
         <div className="text-center">
           <h1 className="text-3xl font-bold font-serif text-center my-6">
-            What Our Client Say
+            What Our Customer Say
           </h1>
           <p className="w-full lg:w-1/2 mx-auto my-5">
             Here are some of our clients. We have provided them the best
@@ -15,7 +15,76 @@ const Feedback = () => {
           </p>
         </div>
 
-        <div id="default-carousel" className="relative" data-carousel="static">
+        <div className="lg:flex justify-center items-center">
+        <div class="container ">
+          <div class="testimonial-box">
+            <div class="testimonial">
+              <i class="fas fa-quote-right"></i>
+              <span class="testimonial-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
+                dignissimos blanditiis similique quod quaerat et recusandae
+                tempora. Animi error quaerat labore cum! Ratione veritatis culpa
+                illo quo molestiae minima repudiandae.
+              </span>
+              <div class="testimonial-user">
+                <img
+                  src="https://randomuser.me/api/portraits/women/17.jpg"
+                  alt="user-img"
+                  class="user-img"
+                />
+                <div class="user-info">
+                  <span class="user-name">Username</span>
+                  <div class="user-job-details">
+                    <span class="user-job">Job</span>
+                    <div class="line"></div>
+                    <span class="user-post">Post</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="testimonial-box">
+            <div class="testimonial">
+              <i class="fas fa-quote-right"></i>
+              <span class="testimonial-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
+                dignissimos blanditiis similique quod quaerat et recusandae
+                tempora. Animi error quaerat labore cum! Ratione veritatis culpa
+                illo quo molestiae minima repudiandae.
+              </span>
+              <div class="testimonial-user">
+                <img
+                  src="https://randomuser.me/api/portraits/women/17.jpg"
+                  alt="user-img"
+                  class="user-img"
+                />
+                <div class="user-info">
+                  <span class="user-name">Username</span>
+                  <div class="user-job-details">
+                    <span class="user-job">Job</span>
+                    <div class="line"></div>
+                    <span class="user-post">Post</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+
+        <div class="support">
+          <a href="https://twitter.com/DevLoop01" target="_blank">
+            <i class="fab fa-twitter-square"></i>
+          </a>
+          <a href="https://codepen.io/dev_loop/" target="_blank">
+            <i class="fab fa-codepen"></i>
+          </a>
+        </div>
+
+        {/* <div id="default-carousel" className="relative" data-carousel="static">
          
           <div className="relative h-72 overflow-hidden rounded-lg md:h-96">
           
@@ -189,10 +258,10 @@ const Feedback = () => {
               <span className="sr-only">Next</span>
             </span>
           </button>
-        </div>
+        </div> */}
       </section>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Feedback;

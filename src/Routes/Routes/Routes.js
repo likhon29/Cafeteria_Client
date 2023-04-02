@@ -31,6 +31,11 @@ import ManageOrder from "../../Pages/Dashboard/Cashier/ManageOrder/ManageOrder";
 import ManageReservation from "../../Pages/Dashboard/Cashier/ManageReservation/ManageReservation";
 import OrderSummary from "../../Pages/Dashboard/Cashier/ManageOrder/OrderSummary";
 import HandOver from "../../Pages/Dashboard/Manager/ManageOrders/HandOver";
+import DeliveryItems from "../../Pages/Dashboard/DeliveryMan/DeliveryItems";
+import OrderDelivery from "../../Pages/Dashboard/DeliveryMan/OrderDelivery";
+import MyItems from "../../Pages/Dashboard/DeliveryMan/MyItems";
+import ItemDetails from "../../Pages/FoodMenu/Item/ItemDetails";
+import BookingDetails from "../../Pages/Dashboard/Customer/MyReservation/BookingDetails";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +69,12 @@ const router = createBrowserRouter([
             <Menu></Menu>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/menu/:id",
+        element: <ItemDetails></ItemDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/menu/${params.id}`),
       },
       {
         path: "/cardDetails",
@@ -119,6 +130,12 @@ const router = createBrowserRouter([
         element: <OrderDetails></OrderDetails>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/order/${params.id}`),
+      },
+      {
+        path: "/dashboard/reservations/:id",
+        element: <BookingDetails></BookingDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/reservation/${params.id}`),
       },
       {
         path: "/dashboard/payment/success",
@@ -208,6 +225,12 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/order/${params.id}`),
       },
       {
+        path: "/dashboard/delivery-man/orders/:id",
+        element: <OrderDelivery></OrderDelivery>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/order/${params.id}`),
+      },
+      {
         path: "/dashboard/allCustomers",
         element: (
           // <ManagerRoute></ManagerRoute>
@@ -237,6 +260,16 @@ const router = createBrowserRouter([
         element: <OrderSummary></OrderSummary>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/order/${params.id}`),
+      },
+      // delivery man orders
+
+      {
+        path: "/dashboard/delivery-man/manage-order",
+        element: <DeliveryItems></DeliveryItems>,
+      },
+      {
+        path: "/dashboard/delivery-man/my-delivery",
+        element: <MyItems></MyItems>,
       },
     ],
   },

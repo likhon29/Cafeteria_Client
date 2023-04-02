@@ -2,10 +2,11 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 // import ItemInfo from "./ItemInfo";
 import { useState } from "react";
-const OrderTimeLine = () => {
+const BookingTimeLine = () => {
   const orderInfo = useLoaderData();
   const order = orderInfo;
   console.log("orderinfp", order);
+
   return (
     <div>
       <div className="flex justify-center items-center mx-24">
@@ -56,7 +57,7 @@ const OrderTimeLine = () => {
                     width="30px"
                   />
 
-                  <span className="-mr-12">Processing</span>
+                  <span className="-mr-12">Booked</span>
                 </>
               )}
             </div>
@@ -72,21 +73,7 @@ const OrderTimeLine = () => {
                 alt=""
                 width="30px"
               />
-              <span className="-mr-12">Processing</span>
-            </div>
-            <div className="bg-success h-0.5 w-[100px] mx-2"></div>
-            <div className="flex-col items-center justify-center mt-5">
-              {order.picked === false && (
-                <>
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Small-dark-green-circle.svg/1200px-Small-dark-green-circle.svg.png"
-                    alt=""
-                    width="30px"
-                  />
-
-                  <span className="-mr-12">Picked</span>
-                </>
-              )}
+              <span className="-mr-12">Booked</span>
             </div>
           </div>
         )}
@@ -212,4 +199,4 @@ const OrderTimeLine = () => {
   );
 };
 
-export default OrderTimeLine;
+export default BookingTimeLine;

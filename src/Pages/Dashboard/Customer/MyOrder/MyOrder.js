@@ -35,12 +35,12 @@ const MyOrder = () => {
             <thead>
               <tr>
                 <th></th>
+                <th>Order ID</th>
                 <th>transactionID</th>
-
                 <th>Amount</th>
                 <th>Order Date</th>
                 {/* <th>Date</th> */}
-                <th>Status</th>
+                
                 <th>Action</th>
               </tr>
             </thead>
@@ -57,29 +57,16 @@ const MyOrder = () => {
               orders?.map((order, i) => (
                 <tr key={order._id}>
                   <th>{i + 1}</th>
-                  <td>{order.transactionId}</td>
+                  <td>{order._id.slice(0,10)+'..'}</td>
+                  <td>{order.transactionId.slice(0,10)+'..'}</td>
 
                   <td>{order.price} Tk.</td>
                   {/* <td>{booking.bookingDate.split('T')[0]}</td> */}
                   <td>{order?.orderDate?.split("T")[0]}</td>
-                  <td>
-                    {/* <button
-                                            className='btn btn-primary btn-sm'
-                                        >Pay</button> */}
-                    {/* {order.price && !order.paid && (
-                      <Link to={`/dashboard/payment/${order._id}`}>
-                        <button className="btn btn-primary btn-sm">Pay</button>
-                      </Link>
-                    )} */}
-                    {order.price && order.paid && (
-                      <span className="rounded p-2 text-white bg-green-600">
-                        Paid
-                      </span>
-                    )}
-                  </td>
+                 
                   <td>
                     <Link to={`/dashboard/orders/${order._id}`}>
-                      <button className="btn btn-sm">Show Details</button>
+                      <button className="btn btn-primary">View Details</button>
                     </Link>
                   </td>
                 </tr>

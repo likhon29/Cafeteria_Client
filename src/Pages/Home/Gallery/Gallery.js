@@ -3,6 +3,14 @@ import "./Gallery.css";
 const Gallery = () => {
   return (
     <div className="demo">
+      <h2 className="text-3xl font-bold font-serif text-center">
+          Our Photos Library
+        </h2>
+        <p className="w-8/12 text-center mx-auto mt-6 mb-12">
+          You can contact with us through this section. Send your problem
+          through message, and we will contact with you shortly. Stay connected
+          with us. Thank You.
+        </p>
       <div class="flex items-center justify-center py-4 md:py-8 flex-wrap">
         <button
           type="button"
@@ -34,51 +42,88 @@ const Gallery = () => {
         >
           Others
         </button>
-        <form >
-            <input
-              placeholder="Search Photo "
-              name="phone"
-              type="text"
-              className="input m-1 w-48 input-bordered"
-            />
-            
+        <form>
+          <input
+            placeholder="Search Photo "
+            name="phone"
+            type="text"
+            className="input m-1 w-48 input-bordered"
+          />
 
-            <input
-              className="btn mx-1 my-2 btn-success"
-              value="Search"
-              type="submit"
-            />
-          </form>
+          <input
+            className="btn mx-1 my-2 btn-success"
+            value="Search"
+            type="submit"
+          />
+        </form>
       </div>
 
-
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-    <div>
-        <img class="h-auto max-w-full rounded-lg" src="https://juniv.edu/storage/image/discussion/9708_5-726fc0.jpg" alt=""/>
-    </div>
-    <div>
-        <img class="h-auto max-w-full rounded-lg" src="https://i.ytimg.com/vi/bxRuOYlQkI0/maxresdefault.jpg" alt=""/>
-    </div>
-    <div>
-        <img class="h-auto max-w-full rounded-lg" src="https://en.shampratikdeshkal.com/uploads/2022/01/online/photos/juu-20210112111611-61d6ca5d22ad1-61d6deab18e6e.jpg" alt=""/>
-    </div>
-    <div>
-        <img class="h-auto max-w-full rounded-lg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTId4ZF0fnNIl5xX3mcq2DQUwRWdVhvz2FwgveK2XdzF-HB4_MTY3ilmvAjddTA_oEZg4I&usqp=CAU" alt=""/>
-    </div>
-    <div>
-        <img class="h-auto max-w-full rounded-lg" src="https://www.localguidesconnect.com/t5/image/serverpage/image-id/60366iD17682E6F5A57211?v=v2" alt=""/>
-    </div>
-    <div>
-        <img class="h-auto max-w-full rounded-lg" src="https://thedailynewnation.com/library/1605890639_3.jpg" alt=""/>
-    </div>
-    <div>
-        <img class="h-auto max-w-full rounded-lg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeb2rzUXY0bSywEMOkaC1VhbM0ANNBl6tSyQ&usqp=CAU" alt=""/>
-    </div>
-    <div>
-        <img class="h-auto max-w-full rounded-lg" src="http://writing.searchenglish.com/wp-content/uploads/2017/04/images13.jpg" alt=""/>
-    </div>
-    
-</div>
+      <div class="grid lg:grid-cols-3 md:grid-cols-3 gap-4">
+        <div className="w-100 ">
+          <img
+            class="h-auto max-w-full rounded-lg"
+            src="https://juniv.edu/storage/image/discussion/9708_5-726fc0.jpg"
+            alt=""
+          />
+        </div>
+        <div className="w-100 ">
+          <img
+            class="h-auto max-w-full rounded-lg"
+            src="https://i0.wp.com/edunews.com.bd/wp-content/uploads/2022/04/jut.jpg?resize=780%2C470&ssl=1"
+            alt=""
+          />
+        </div>
+        <div className="w-100 ">
+          <img
+            class="h-auto max-w-full rounded-lg"
+            src="https://i.ytimg.com/vi/bxRuOYlQkI0/maxresdefault.jpg"
+            alt=""
+          />
+        </div>
+        <div className="w-100">
+          <img
+            class="h-auto max-w-full rounded-lg"
+            src="https://en.shampratikdeshkal.com/uploads/2022/01/online/photos/juu-20210112111611-61d6ca5d22ad1-61d6deab18e6e.jpg"
+            alt=""
+          />
+        </div>
+       
+        <div className="w-100 ">
+          <img
+            class="h-auto max-w-full rounded-lg"
+            src="https://www.localguidesconnect.com/t5/image/serverpage/image-id/60366iD17682E6F5A57211?v=v2"
+            alt=""
+          />
+        </div>
+        <div>
+          <img
+            class="h-auto max-w-full rounded-lg"
+            src="https://thedailynewnation.com/library/1605890639_3.jpg"
+            alt=""
+          />
+        </div>
+        <div className="w-100 ">
+          <img
+            class="h-auto max-w-full rounded-lg"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeb2rzUXY0bSywEMOkaC1VhbM0ANNBl6tSyQ&usqp=CAU"
+            alt=""
+          />
+        </div>
+        <div className="w-100 ">
+          <img
+            class="h-auto max-w-full rounded-lg"
+            src="http://writing.searchenglish.com/wp-content/uploads/2017/04/images13.jpg"
+            alt=""
+          />
+        </div>
+        <div className="w-100 ">
+          <img
+            class="h-auto max-w-full rounded-lg"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTId4ZF0fnNIl5xX3mcq2DQUwRWdVhvz2FwgveK2XdzF-HB4_MTY3ilmvAjddTA_oEZg4I&usqp=CAU"
+            alt=""
+          />
+        </div>
+      </div>
     </div>
   );
 };

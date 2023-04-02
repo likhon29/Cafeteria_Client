@@ -125,10 +125,10 @@ const DashBoardLayout = () => {
                   <NavLink to="/dashboard/profile">Profile</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/myOrders">Delivery Items</NavLink>
+                  <NavLink to="/dashboard/delivery-man/manage-order">Delivery Items</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/myWishLists">Payments</NavLink>
+                  <NavLink to="/dashboard/delivery-man/my-delivery">My Delivery Lists</NavLink>
                 </li>
               </>
             )}

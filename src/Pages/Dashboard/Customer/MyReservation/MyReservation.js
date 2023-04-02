@@ -58,14 +58,13 @@ const MyReservation = () => {
           {orders.length > 0 ? (
             <thead>
               <tr>
-                <th></th>
-                <th>Title</th>
+                <th>No</th>
+                <th>Booking ID</th>
+                <th>transactionID</th>
 
-                <th>Reservation Date</th>
-                <th>Booking Date</th>
+                
                 <th>Price</th>
-                {/* <th>Date</th> */}
-                <th>Payment</th>
+                
                 <th>Action</th>
               </tr>
             </thead>
@@ -84,12 +83,13 @@ const MyReservation = () => {
               orders?.map((order, i) => (
                 <tr key={order._id}>
                   <th>{i + 1}</th>
-                  <td>{order.title}</td>
-                  <td>{order.reservationDate}</td>
+                  <td>{order._id}</td>
+                  <td>{order.transactionId}</td>
+                  
 
                   {/* <td>{booking.bookingDate.split('T')[0]}</td> */}
-                  <td>{order.bookingDate}</td>
-                  <td>{order.price} Tk.</td>
+                  {/* <td>{order.bookingDate}</td> */}
+                  {/* <td>{order.price} Tk.</td> */}
                   <td>
                     {/* <button
                                             className='btn btn-primary btn-sm'
@@ -107,7 +107,9 @@ const MyReservation = () => {
                     )}
                   </td>
                   <td>
-                    <button className="btn btn-sm">X</button>
+                  <Link to={`/dashboard/reservations/${order._id}`}>
+                      <button className="btn btn-primary">View Details</button>
+                    </Link>
                   </td>
                 </tr>
               ))}
